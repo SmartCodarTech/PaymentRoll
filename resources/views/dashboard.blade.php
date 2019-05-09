@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>KAIPTC| Employee Management</title>
+  <title>Payroll Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -47,8 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Payroll
+        <small> Dashboard</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

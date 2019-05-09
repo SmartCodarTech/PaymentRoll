@@ -7,7 +7,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset("/bower_components/AdminLTE/dist/img/user.jpg") }}" class="img-circle" alt="User Image">
+          <img src="{{ asset("/bower_components/AdminLTE/dist/img/logo.png") }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name}}</p>
@@ -32,9 +32,9 @@
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="{{ url('employee-management') }}"><i class="fa fa-users"></i> <span>Employee Management</span></a></li>
+        <li><a href="{{ url('employee-management') }}"><i class="fa fa-users"></i> <span>Payroll Management</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-laptop"></i> <span>System Management</span>
+          <a href="#"><i class="fa fa-laptop"></i> <span>Payroll Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

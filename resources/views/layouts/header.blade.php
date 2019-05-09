@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>E</b>M</span>
+      <span class="logo-mini"><b>P</b>M</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">{{ config('app.name', 'EmployeeManagement') }}</span>
+      <span class="logo-lg">{{ config('app.name', 'Payroll') }}</span>
     </a>
 
     <!-- Header Navbar -->
@@ -23,14 +23,14 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{ asset("/bower_components/AdminLTE/dist/img/user.jpg") }}" class="user-image" alt="User Image">
+              <img src="{{ asset("/bower_components/AdminLTE/dist/img/logo.png") }}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">{{ Auth::user()->username }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="{{ asset("/bower_components/AdminLTE/dist/img/user.jpg") }}" class="img-circle" alt="User Image">
+                <img src="{{ asset("/bower_components/AdminLTE/dist/img/logo.png") }}" class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->username }}
