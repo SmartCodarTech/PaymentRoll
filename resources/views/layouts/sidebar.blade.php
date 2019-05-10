@@ -32,9 +32,9 @@
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="{{ url('employee-management') }}"><i class="fa fa-users"></i> <span>Payroll Management</span></a></li>
+        <li><a href="{{ url('employee-management') }}"><i class="fa fa-fighter-jet"></i> <span>Officers Management</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-laptop"></i> <span>Payroll Management</span>
+          <a href="#"><i class="fa fa-money"></i> <span>Payroll Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

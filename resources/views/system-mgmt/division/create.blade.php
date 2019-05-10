@@ -23,6 +23,33 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
+                            <label for="code" class="col-md-4 control-label">Division code</label>
+
+                            <div class="col-md-6">
+                                <input id="code" type="text" class="form-control" name="code" value="{{ old('code') }}" required autofocus>
+
+                                @if ($errors->has('code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('Salary') ? ' has-error' : '' }}">
+                            <label for="salary" class="col-md-4 control-label">Division Salary</label>
+
+                            <div class="col-md-6">
+                                <input id="salary" type="text" class="form-control" name="salary" value="{{ old('salary') }}" required autofocus>
+
+                                @if ($errors->has('salary'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('salary') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

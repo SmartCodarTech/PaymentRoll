@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="info-box-content">
               <span class="info-box-text"><b>Users</b></span>
-              <span class="info-box-number"></span>
+              <span class="info-box-number">{{DB::table('users')->count()}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="info-box-content">
               <span class="info-box-text"><b>Countries</b></span>
-              <span class="info-box-number">{{ Auth::user()->username }}</span>
+              <span class="info-box-number"></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -140,8 +140,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="info-box-icon bg-red"><i class="fa fa-male"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text"><b>Males</b></span>
-              <span class="info-box-number"></span>
+              <span class="info-box-text"><b>Divisions</b></span>
+              <span class="info-box-number">{{DB::table('division')->count()}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
