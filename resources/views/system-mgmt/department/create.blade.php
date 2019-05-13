@@ -23,6 +23,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }}">
+                            <label for="unit" class="col-md-4 control-label">Department center</label>
+
+                            <div class="col-md-6">
+                                <input id="unit" type="text" class="form-control" name="unit" value="{{ old('unit') }}" required autofocus>
+
+                                @if ($errors->has('unit'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('unit') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

@@ -64,14 +64,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{DB::table('division')->count()}}</h3>
+              <h3>{{DB::table('users')->count()}}</h3>
 
-              <p>Divisions</p>
+              <p>Users</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
             </div>
-            <a href="{{ url('system-management/division') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('user-management.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -79,28 +79,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-blue">
             <div class="inner">
-              <h3>{{DB::table('users')->count()}}</h3>
+              <h3>{{DB::table('division')->count()}}</h3>
 
-              <p>Divisions</p>
+              <p>Divitions</p>
             </div>
             <div class="icon">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-institution"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('system-management/division') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{DB::table('users')->count()}}</h3>
+              <h3>{{DB::table('department')->count()}}</h3>
 
-              <p>Divisions</p>
+              <p>Department</p>
             </div>
             <div class="icon">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-building-o"></i>
             </div>
-            <a href="{{ route('user-management.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('system-management/department') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
