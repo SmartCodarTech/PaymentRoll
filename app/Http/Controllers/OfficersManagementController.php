@@ -3,9 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Response;
+use App\Officers;
+use App\Department;
+use App\Division;
 
-class OfficersManagementController extends Controller
+class EmployeeManagementController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +28,14 @@ class OfficersManagementController extends Controller
      */
     public function index()
     {
-        //
+        $officers = DB::table('officers')
+        
+        ->leftJoin('department', 'officers.department_id', '=', 'department.id')
+        ->leftJoin('division', 'officers.division_id', '=', 'division.id')
+        ->select('officers.*', 'department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id')
+        ->paginate(5);
+
+        return view('employees-mgmt/index', ['officers' => $officers]);
     }
 
     /**
@@ -23,7 +45,13 @@ class OfficersManagementController extends Controller
      */
     public function create()
     {
-        //
+        // $cities = City::all();
+        // $states = State::all();
+        //$countries = Country::all();
+        $departments = Department::all();
+        $divisions = Division::all();
+        return view('employees-mgmt/create', [
+        'departments' => $departments, 'divisions' => $divisions]);
     }
 
     /**
@@ -34,7 +62,18 @@ class OfficersManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateInput($request);
+        // Upload image
+        $path = $request->file('picture')->store('avatars');
+        $keys = ['lastname', 'firstname', 'email','type', 
+        'rank', 'gender','date_hired',  'department_id', 'division_id'];
+        $input = $this->createQueryInput($keys, $request);
+        $input['picture'] = $path;
+        // Not implement yet
+        // $input['company_id'] = 0;
+        Employee::create($input);
+
+        return redirect()->intended('/employee-management');
     }
 
     /**
@@ -56,7 +95,18 @@ class OfficersManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $officers = Officers::find($id);
+        // Redirect to state list if updating state wasn't existed
+        if ($officers == null || count($officers) == 0) {
+            return redirect()->intended('/employee-management');
+        }
+        //$cities = City::all();
+        //$states = State::all();
+        //$countries = Country::all();
+        $departments = Department::all();
+        $divisions = Division::all();
+        return view('employees-mgmt/edit', ['officers' => $officers,
+        'departments' => $departments, 'divisions' => $divisions]);
     }
 
     /**
@@ -68,7 +118,21 @@ class OfficersManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $officers = Officers::findOrFail($id);
+        $this->validateInput($request);
+        // Upload image
+        $keys = ['lastname', 'firstname', 'email','type',
+        'rank', 'birthdate','gender', 'date_hired', 'department_id', 'division_id'];
+        $input = $this->createQueryInput($keys, $request);
+        if ($request->file('picture')) {
+            $path = $request->file('picture')->store('avatars');
+            $input['picture'] = $path;
+        }
+
+        Employee::where('id', $id)
+            ->update($input);
+
+        return redirect()->intended('/employee-management');
     }
 
     /**
@@ -79,6 +143,82 @@ class OfficersManagementController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Employee::where('id', $id)->delete();
+         return redirect()->intended('/employee-management');
+    }
+
+    /**
+     * Search state from database base on some specific constraints
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *  @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        $constraints = [
+            'firstname' => $request['firstname'],
+            'department.name' => $request['department_name']
+            ];
+        $employees = $this->doSearchingQuery($constraints);
+        $constraints['department_name'] = $request['department_name'];
+        return view('employees-mgmt/index', ['officers' => $officers, 'searchingVals' => $constraints]);
+    }
+
+    private function doSearchingQuery($constraints) {
+        $query = DB::table('officers')
+        
+        ->leftJoin('department', 'officers.department_id', '=', 'department.id')
+        
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('officers.firstname as employee_name', 'officers.*','department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id');
+        $fields = array_keys($constraints);
+        $index = 0;
+        foreach ($constraints as $constraint) {
+            if ($constraint != null) {
+                $query = $query->where($fields[$index], 'like', '%'.$constraint.'%');
+            }
+
+            $index++;
+        }
+        return $query->paginate(5);
+    }
+
+     /**
+     * Load image resource.
+     *
+     * @param  string  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function load($name) {
+         $path = storage_path().'/app/avatars/'.$name;
+        if (file_exists($path)) {
+            return Response::download($path);
+        }
+    }
+
+    private function validateInput($request) {
+        $this->validate($request, [
+            'lastname' => 'required|max:60',
+            'firstname' => 'required|max:60',
+            'email' => 'required|max:60',
+            'address' => 'required|max:120',
+            'type' => 'required',
+            //'zip' => 'required|max:10',
+            //'age' => 'required',
+            'rank' => 'required',
+            'gender'=>'required',
+            'date_hired' => 'required',
+            'department_id' => 'required',
+            'division_id' => 'required'
+        ]);
+    }
+
+    private function createQueryInput($keys, $request) {
+        $queryInput = [];
+        for($i = 0; $i < sizeof($keys); $i++) {
+            $key = $keys[$i];
+            $queryInput[$key] = $request[$key];
+        }
+
+        return $queryInput;
     }
 }

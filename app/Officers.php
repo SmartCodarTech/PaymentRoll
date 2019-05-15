@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Officers extends Model
 {
-    //
+     protected $guarded = [];
 }

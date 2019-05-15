@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="progress-number"><b>310</b>/400</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
@@ -210,7 +210,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="progress-number"><b>480</b>/800</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->

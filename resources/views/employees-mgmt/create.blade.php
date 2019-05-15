@@ -35,11 +35,11 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('middlename') ? ' has-error' : '' }}">
-                            <label for="middlename" class="col-md-4 control-label">Middle Name</label>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input id="middlename" type="text" class="form-control" name="middlename" value="{{ old('middlename') }}" required>
+                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('middlename'))
                                     <span class="help-block">
@@ -48,78 +48,27 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Address</label>
-
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
-
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Country</label>
+                            <label class="col-md-4 control-label">Army Field</label>
                             <div class="col-md-6">
-                                <select class="form-control js-country" name="country_id">
-                                    <option value="-1">Please select your country</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">State</label>
-                            <div class="col-md-6">
-                                <select class="form-control js-states" name="state_id">
-                                    <option value="-1">Please select your state</option>
-                                    {{--  @foreach ($states as $state)
-                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                    @endforeach  --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">City</label>
-                            <div class="col-md-6">
-                                <select class="form-control js-cities" name="city_id">
-                                    <option value="-1">Please select your city</option>
-                                    {{--  @foreach ($cities as $city)
-                                        <option value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach  --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('zip') ? ' has-error' : '' }}">
-                            <label for="zip" class="col-md-4 control-label">Zip</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mars-double"></i>
+                                    </div>
+                                    <select type="text"  name="type" class="form-control pull-right" id="type" required>
+                                        <option value="none">Please select</option>
+                                        <option value="army">Army</option>
+                                        <option value="navy">Navy</option>
+                                        <option value="air force">Air force</option>
+                                    </select>
 
-                            <div class="col-md-6">
-                                <input id="zip" type="text" class="form-control" name="zip" value="{{ old('zip') }}" required>
-
-                                @if ($errors->has('zip'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('zip') }}</strong>
-                                    </span>
-                                @endif
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                            <label for="zip" class="col-md-4 control-label">Age</label>
-
-                            <div class="col-md-6">
-                                <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" required>
-
-                                @if ($errors->has('age'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('age') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
+                        
+                      
+                        
                         <div class="form-group">
                             <label class="col-md-4 control-label">Gender</label>
                             <div class="col-md-6">
@@ -137,17 +86,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">DOB</label>
-                            <div class="col-md-6">
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" value="{{ old('birthdate') }}" name="birthdate" class="form-control pull-right" id="birthDate" required>
-                                </div>
-                            </div>
-                        </div>
+                       
                           <div class="form-group">
                             <label class="col-md-4 control-label">Hired Date</label>
                             <div class="col-md-6">
