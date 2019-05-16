@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Response;
-use App\Officers;
+use App\Employee;
 use App\Department;
 use App\Division;
 
@@ -28,14 +28,13 @@ class EmployeeManagementController extends Controller
      */
     public function index()
     {
-        $officers = DB::table('officers')
-        
-        ->leftJoin('department', 'officers.department_id', '=', 'department.id')
-        ->leftJoin('division', 'officers.division_id', '=', 'division.id')
-        ->select('officers.*', 'department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id')
+        $employees = DB::table('employees')
+        ->leftJoin('department', 'employees.department_id', '=', 'department.id')
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('employees.*', 'department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id')
         ->paginate(5);
 
-        return view('employees-mgmt/index', ['officers' => $officers]);
+        return view('employees-mgmt/index', ['employees' => $employees]);
     }
 
     /**
@@ -65,8 +64,8 @@ class EmployeeManagementController extends Controller
         $this->validateInput($request);
         // Upload image
         $path = $request->file('picture')->store('avatars');
-        $keys = ['lastname', 'firstname', 'email','type', 
-        'rank', 'gender','date_hired',  'department_id', 'division_id'];
+        $keys = ['lastname', 'firstname', 'email', 'type',
+        'gender','date_hired',  'department_id', 'division_id'];
         $input = $this->createQueryInput($keys, $request);
         $input['picture'] = $path;
         // Not implement yet
@@ -95,17 +94,17 @@ class EmployeeManagementController extends Controller
      */
     public function edit($id)
     {
-        $officers = Officers::find($id);
+        $employee = Employee::find($id);
         // Redirect to state list if updating state wasn't existed
-        if ($officers == null || count($officers) == 0) {
+        if ($employee == null || count($employee) == 0) {
             return redirect()->intended('/employee-management');
         }
         //$cities = City::all();
-        //$states = State::all();
-        //$countries = Country::all();
+      //  $states = State::all();
+       // $countries = Country::all();
         $departments = Department::all();
         $divisions = Division::all();
-        return view('employees-mgmt/edit', ['officers' => $officers,
+        return view('employees-mgmt/edit', ['employee' => $employee, 
         'departments' => $departments, 'divisions' => $divisions]);
     }
 
@@ -118,11 +117,11 @@ class EmployeeManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $officers = Officers::findOrFail($id);
+        $employee = Employee::findOrFail($id);
         $this->validateInput($request);
         // Upload image
-        $keys = ['lastname', 'firstname', 'email','type',
-        'rank', 'birthdate','gender', 'date_hired', 'department_id', 'division_id'];
+        $keys = ['lastname', 'firstname', 
+        'email', 'gender', 'type','date_hired', 'department_id', 'division_id'];
         $input = $this->createQueryInput($keys, $request);
         if ($request->file('picture')) {
             $path = $request->file('picture')->store('avatars');
@@ -160,16 +159,14 @@ class EmployeeManagementController extends Controller
             ];
         $employees = $this->doSearchingQuery($constraints);
         $constraints['department_name'] = $request['department_name'];
-        return view('employees-mgmt/index', ['officers' => $officers, 'searchingVals' => $constraints]);
+        return view('employees-mgmt/index', ['employees' => $employees, 'searchingVals' => $constraints]);
     }
 
     private function doSearchingQuery($constraints) {
-        $query = DB::table('officers')
-        
-        ->leftJoin('department', 'officers.department_id', '=', 'department.id')
-        
+        $query = DB::table('employees')
+        ->leftJoin('department', 'employees.department_id', '=', 'department.id')
         ->leftJoin('division', 'employees.division_id', '=', 'division.id')
-        ->select('officers.firstname as employee_name', 'officers.*','department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id');
+        ->select('employees.firstname as employee_name', 'employees.*','department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id');
         $fields = array_keys($constraints);
         $index = 0;
         foreach ($constraints as $constraint) {
@@ -200,11 +197,7 @@ class EmployeeManagementController extends Controller
             'lastname' => 'required|max:60',
             'firstname' => 'required|max:60',
             'email' => 'required|max:60',
-            'address' => 'required|max:120',
             'type' => 'required',
-            //'zip' => 'required|max:10',
-            //'age' => 'required',
-            'rank' => 'required',
             'gender'=>'required',
             'date_hired' => 'required',
             'department_id' => 'required',

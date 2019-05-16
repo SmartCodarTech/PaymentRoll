@@ -107,14 +107,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{DB::table('users')->count()}}</h3>
+              <h3>{{DB::table('employees')->count()}}</h3>
 
-              <p>Divisions</p>
+              <p>Officers</p>
             </div>
             <div class="icon">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('employee-management') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">

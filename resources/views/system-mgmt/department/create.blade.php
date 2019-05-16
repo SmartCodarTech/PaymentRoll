@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 control-label">Department Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="department name"required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -24,10 +24,10 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }}">
-                            <label for="unit" class="col-md-4 control-label">Department center</label>
+                            <label for="unit" class="col-md-4 control-label">Department Section</label>
 
                             <div class="col-md-6">
-                                <input id="unit" type="text" class="form-control" name="unit" value="{{ old('unit') }}" required autofocus>
+                                <input id="unit" type="text" class="form-control" name="unit" value="{{ old('unit') }}" placeholder="department unit" required autofocus>
 
                                 @if ($errors->has('unit'))
                                     <span class="help-block">

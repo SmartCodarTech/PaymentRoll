@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add new employee</div>
+                <div class="panel-heading">Add new Officer</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('employee-management.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -13,7 +13,7 @@
                             <label for="firstname" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
+                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" placeholder="first name" required autofocus>
 
                                 @if ($errors->has('firstname'))
                                     <span class="help-block">
@@ -26,7 +26,7 @@
                             <label for="lastname" class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required>
+                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" placeholder="last name"required>
 
                                 @if ($errors->has('lastname'))
                                     <span class="help-block">
@@ -39,11 +39,11 @@
                             <label for="email" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="email"required>
 
-                                @if ($errors->has('middlename'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('middlename') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -53,7 +53,7 @@
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-mars-double"></i>
+                                        <i class="fa fa-user"></i>
                                     </div>
                                     <select type="text"  name="type" class="form-control pull-right" id="type" required>
                                         <option value="none">Please select</option>
@@ -94,7 +94,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" value="{{ old('date_hired') }}" name="date_hired" class="form-control pull-right" id="hiredDate" required>
+                                    <input type="text" value="{{ old('date_hired') }}" name="date_hired" class="form-control pull-right" id="hiredDate" placeholder="hired date" required>
                                 </div>
                             </div>
                         </div>

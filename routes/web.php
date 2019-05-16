@@ -24,8 +24,8 @@ Route::get('/profile', 'ProfileController@index');
 Route::post('user-management/search', 'UserManagementController@search')->name('user-management.search');
 Route::resource('user-management', 'UserManagementController');
 
-Route::resource('employee-management', 'OfficersManagementController');
-Route::post('employee-management/search', 'OfficersManagementController@search')->name('employee-management.search');
+Route::resource('employee-management', 'EmployeeManagementController');
+Route::post('employee-management/search', 'EmployeeManagementController@search')->name('employee-management.search');
 
 Route::resource('system-management/department', 'DepartmentController');
 Route::post('system-management/department/search', 'DepartmentController@search')->name('department.search');
