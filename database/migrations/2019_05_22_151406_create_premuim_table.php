@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePremiumTable extends Migration
+class CreatePremuimTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePremiumTable extends Migration
      */
     public function up()
     {
-        Schema::create('premium', function (Blueprint $table) {
+        Schema::create('premuim', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('comment',60);
             $table->decimal('amount'6,0);
@@ -32,6 +32,6 @@ class CreatePremiumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('premium');
+        Schema::dropIfExists('premuim');
     }
 }

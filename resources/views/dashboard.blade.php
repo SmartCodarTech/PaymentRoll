@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect.
   -->
    <link href="{{ asset("/bower_components/AdminLTE/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+   <script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.js") }}" type="text/javascript"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -181,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.row -->
 
 
-                <!-- /.col -->
+                <!-- /.col >
                 <div class="col-md-12">
                   <p class="text-center">
                     <strong>Goal Completion</strong>
@@ -195,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
-                  <!-- /.progress-group -->
+                  <!-- /.progress-group ->
                   <div class="progress-group">
                     <span class="progress-text">Complete Purchase</span>
                     <span class="progress-number"><b>310</b>/400</span>
@@ -204,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
-                  <!-- /.progress-group -->
+                  <!-- /.progress-group ->
                   <div class="progress-group">
                     <span class="progress-text">Visit Premium Page</span>
                     <span class="progress-number"><b>480</b>/800</span>
@@ -213,7 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
-                  <!-- /.progress-group -->
+                  <!-- /.progress-group ->
                   <div class="progress-group">
                     <span class="progress-text">Send Inquiries</span>
                     <span class="progress-number"><b>250</b>/500</span>
@@ -223,7 +224,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                   </div>
                   <!-- /.progress-group -->
+                  <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+              <li class="pull-left header"><i class="fa fa-area-chart"></i>Anually Statistics</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- Morris chart - Sales -->
+              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+            </div>
+          </div>
+
                 </div>
+
                 <!-- /.col -->
               </div>
               <!-- /.row -->
@@ -258,6 +278,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- AdminLTE App -->
 <script src="{{ asset ("/bower_components/AdminLTE/dist/js/app.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.min.js") }}" type="text/javascript"></script>
+
 <!--script src="{{ asset ("/bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js") }}"type="text/javascript"></script>
 <!-- Bootstrap 3.3.6 -->
 

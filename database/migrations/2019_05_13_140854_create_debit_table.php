@@ -15,7 +15,13 @@ class CreateDebitTable extends Migration
     {
         Schema::create('debit', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('comment',60);
+            $table->decimal(6,0);
+            $table->bigInteger('officers_id')->unsigned();
+            $table->foreign('officers_id')->references('id')->on('officers');
             $table->timestamps();
+            $table->softDeletes();
+            
         });
     }
 

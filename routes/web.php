@@ -36,6 +36,9 @@ Route::post('system-management/division/search', 'DivisionController@search')->n
 Route::resource('system-management/country', 'CountryController');
 Route::post('system-management/country/search', 'CountryController@search')->name('country.search');
 
+Route::resource('system-management/premium', 'PremuimController');
+Route::post('system-management/premium/search', 'PremuimController@search')->name('premium.search');
+
 Route::resource('system-management/salary', 'EmployeeSalaryController');
 Route::post('system-management/salary/search', 'EmployeeSalaryController@search')->name('salary.search');
 
