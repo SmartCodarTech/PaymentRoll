@@ -3252,7 +3252,7 @@ table.text-center th {
 }
 .login-box-body,
 .register-box-body {
-  background: #fff;
+  background: #f1f1f1;
   padding: 20px;
   border-top: 0;
   color: #666;
