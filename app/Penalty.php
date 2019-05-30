@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penalty extends Model
 {
-    //
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'penalty';
+
+    /**
+    * The attributes that aren't mass assignable.
+    *
+    * @var array
+    */
+    protected $guarded = [];
 }

@@ -38,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition login-page">
 <div class="login-box">
   
-  <center><img src="{{ asset("/bower_components/AdminLTE/dist/img/logo.png") }}" class="img-circle" width="70px" height="70px"></center>
+  <center><img src="{{ asset("/bower_components/AdminLTE/dist/img/logo.png") }}" class="img-circle" width="80px" height="80px"></center>
   <div class="login-logo">
 
           
@@ -96,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.social-auth-links -->
 
     <a href="{{ route('password.request') }}">I forgot my password</a><br>
-    <!--a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
 
   </div>
   <!-- /.login-box-body -->

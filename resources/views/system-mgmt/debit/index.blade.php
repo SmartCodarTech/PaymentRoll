@@ -1,4 +1,4 @@
-@extends('system-mgmt.salary.base')
+@extends('system-mgmt.state.base')
 @section('action-content')
     <!-- Main content -->
     <section class="content">
@@ -9,7 +9,7 @@
           <h3 class="box-title">List of states</h3>
         </div>
         <div class="col-sm-4">
-          <a class="btn btn-primary" href="{{ route('salary.create') }}">Add new state</a>
+          <a class="btn btn-primary" href="{{ route('state.create') }}">Add new state</a>
         </div>
     </div>
   </div>
@@ -19,11 +19,11 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6"></div>
       </div>
-      <form method="POST" action="{{ route('salary.search') }}">
+      <form method="POST" action="{{ route('state.search') }}">
          {{ csrf_field() }}
          @component('layouts.search', ['title' => 'Search'])
           @component('layouts.two-cols-search-row', ['items' => ['Name'], 
-          'oldVals' => [isset($searchingVals) ? $searchingVals['salary'] : '']])
+          'oldVals' => [isset($searchingVals) ? $searchingVals['name'] : '']])
           @endcomponent
         @endcomponent
       </form>
@@ -39,15 +39,15 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($salary as $salaries)
+            @foreach ($states as $state)
                 <tr role="row" class="odd">
-                  <td>{{ $salaries->salary }}</td>
-                  <td>{{ $salaries->firstname }}</td>
+                  <td>{{ $state->name }}</td>
+                  <td>{{ $state->country_name }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('salary.destroy', ['id' => $salary->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('state.destroy', ['id' => $state->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('salary.edit', ['id' => $salary->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                        <a href="{{ route('state.edit', ['id' => $state->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                         Update
                         </a>
                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
@@ -61,7 +61,7 @@
             <tfoot>
               <tr>
                 <th width="20%" rowspan="1" colspan="1">State Name</th>
-                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Employee's Name</th>
+                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Country Name</th>
                 <th rowspan="1" colspan="2">Action</th>
               </tr>
             </tfoot>
@@ -70,11 +70,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($salary)}} of {{count($salary)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($states)}} of {{count($states)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $salary->links() }}
+            {{ $states->links() }}
           </div>
         </div>
       </div>

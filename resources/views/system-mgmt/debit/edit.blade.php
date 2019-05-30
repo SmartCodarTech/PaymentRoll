@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Update salary</div>
+                <div class="panel-heading">Update state</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('salary.update', ['id' => $state->id]) }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('state.update', ['id' => $state->id]) }}">
                         <input type="hidden" name="_method" value="PATCH">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

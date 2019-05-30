@@ -33,20 +33,21 @@ Route::post('system-management/department/search', 'DepartmentController@search'
 Route::resource('system-management/division', 'DivisionController');
 Route::post('system-management/division/search', 'DivisionController@search')->name('division.search');
 
-Route::resource('system-management/country', 'CountryController');
-Route::post('system-management/country/search', 'CountryController@search')->name('country.search');
-
 Route::resource('system-management/premium', 'PremuimController');
 Route::post('system-management/premium/search', 'PremuimController@search')->name('premium.search');
 
 Route::resource('system-management/salary', 'EmployeeSalaryController');
 Route::post('system-management/salary/search', 'EmployeeSalaryController@search')->name('salary.search');
 
-Route::resource('system-management/state', 'StateController');
-Route::post('system-management/state/search', 'StateController@search')->name('state.search');
 
-Route::resource('system-management/city', 'CityController');
-Route::post('system-management/city/search', 'CityController@search')->name('city.search');
+Route::resource('system-management/debit', 'DebitController');
+Route::post('system-management/debit/search', 'DebitController@search')->name('debit.search');
+
+Route::resource('system-management/credit', 'CreditController');
+Route::post('system-management/credit/search', 'CredititController@search')->name('credit.search');
+
+Route::resource('system-management/penalty', 'PenaltyController');
+Route::post('system-management/penalty/search', 'PenaltyController@search')->name('penalty.search');
 
 Route::get('system-management/report', 'ReportController@index');
 Route::post('system-management/report/search', 'ReportController@search')->name('report.search');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\Credit;
+use App\Debit;
+use App\Penalty;
 use Excel;
 use Illuminate\Support\Facades\DB;
 use Auth;
