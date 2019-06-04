@@ -25,6 +25,17 @@ class CreditController extends Controller
      */
     public function index()
     {
+
+         $credit = DB::table('credit')
+        ->leftJoin('employees', 'credit.employee_id', '=', 'employees.id')
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('credit.*', 'employees.lastname as employees_lastname',
+                            'employees.firstname as employees_firstname',
+                            'employees.picture as employees_picture', 
+            'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
+        
+       ->paginate(5);
+
         $credit = Credit::paginate(5);
 
         return view('system-mgmt/credit/index', ['credit' => $credit]);

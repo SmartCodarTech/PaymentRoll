@@ -26,9 +26,18 @@ class DebitController extends Controller
      */
     public function index()
     {
-        $debit = Debit::paginate(5);
 
-        return view('system-mgmt/debit/index', ['debit' => $debit]);
+        $debits = DB::table('debit')
+        ->leftJoin('employees', 'debit.employee_id', '=', 'employees.id')
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('debit.*', 'employees.lastname as employees_lastname',
+                            'employees.firstname as employees_firstname',
+                            'employees.picture as employees_picture', 
+            'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
+        
+       ->paginate(5);
+
+       return view('system-mgmt/debit/index', ['debit' => $debits]);
     }
 
     /**
@@ -84,7 +93,7 @@ class DebitController extends Controller
             return redirect()->intended('/system-management/debit');
         }
 
-        return view('system-mgmt/debit/edit', ['debit' => $credit]);
+        return view('system-mgmt/debit/edit', ['debit' => $debit]);
     }
 
     /**

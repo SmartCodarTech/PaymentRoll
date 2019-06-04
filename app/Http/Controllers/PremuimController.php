@@ -25,9 +25,18 @@ class PremuimController extends Controller
      */
     public function index()
     {
-        $premuim = Premuim::paginate(5);
 
-        return view('system-mgmt/premium/index', ['premium' => $premuim]);
+         $premuims = DB::table('premuim')
+        ->leftJoin('employees', 'premuim.employee_id', '=', 'employees.id')
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('premuim.*', 'employees.lastname as employees_lastname',
+                            'employees.firstname as employees_firstname',
+                            'employees.picture as employees_picture', 
+            'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
+        
+       ->paginate(5);
+
+        return view('system-mgmt/premium/index', ['premium' => $premuims]);
     }
 
     /**
@@ -49,7 +58,7 @@ class PremuimController extends Controller
     public function store(Request $request)
     {
         $this->validateInput($request);
-         Country::create([
+         Premuim::create([
             'name' => $request['name'],
             'country_code' => $request['country_code']
         ]);

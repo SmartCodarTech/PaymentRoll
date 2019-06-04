@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Employees;
 use App\Penalty;
-
+use App\Division;
 class PenaltyController extends Controller
 {
 
@@ -26,6 +27,15 @@ class PenaltyController extends Controller
      */
     public function index()
     {
+        $penalty = DB::table('penalty')
+        ->leftJoin('employees', 'penalty.employee_id', '=', 'employees.id')
+        ->leftJoin('division', 'employees.division_id', '=', 'division.id')
+        ->select('penalty.*', 'employees.lastname as employees_lastname',
+                            'employees.firstname as employees_firstname',
+                            'employees.picture as employees_picture', 
+            'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
+        
+       ->paginate(5);
         $penalty = Penalty::paginate(5);
 
         return view('system-mgmt/penalty/index', ['penalty' => $penalty]);
