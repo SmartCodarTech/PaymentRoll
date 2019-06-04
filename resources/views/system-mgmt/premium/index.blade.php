@@ -1,4 +1,4 @@
-@extends('system-mgmt.country.base')
+@extends('system-mgmt.premium.base')
 @section('action-content')
     <!-- Main content -->
     <section class="content">
@@ -39,15 +39,15 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($premuim as $premuim)
+            @foreach ($premium as $premium)
                 <tr role="row" class="odd">
-                  <td>{{ $premuim->comment }}</td>
-                  <td>{{ $premuim->amount }}</td>
+                  <td>{{ $premium->comment }}</td>
+                  <td>{{ $premium->amount }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('premium.destroy', ['id' => $premuim->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('premium.destroy', ['id' => $premium->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('premuim.edit', ['id' => $premuim->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                        <a href="{{ route('premium.edit', ['id' => $premium->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                         Update
                         </a>
                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
@@ -70,11 +70,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($premuim)}} of {{count($premuim)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($premium)}} of {{count($premium)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $premuim->links() }}
+            {{ $premium->links() }}
           </div>
         </div>
       </div>

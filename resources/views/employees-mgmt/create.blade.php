@@ -98,6 +98,18 @@
                                 </div>
                             </div>
                         </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Retirement Date</label>
+                            <div class="col-md-6">
+                                <div class="input-group date2">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" value="{{ old('date_retired') }}" name="date_retired" class="form-control pull-right" id="retiredDate" placeholder="Retirement date" required>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Department</label>
                             <div class="col-md-6">

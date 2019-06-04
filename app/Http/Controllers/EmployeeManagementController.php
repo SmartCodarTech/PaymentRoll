@@ -31,7 +31,7 @@ class EmployeeManagementController extends Controller
         $employees = DB::table('employees')
         ->leftJoin('department', 'employees.department_id', '=', 'department.id')
         ->leftJoin('division', 'employees.division_id', '=', 'division.id')
-        ->select('employees.*', 'department.name as department_name', 'department.id as department_id', 'division.name as division_name', 'division.id as division_id')
+        ->select('employees.*', 'department.name as department_name', 'department.id as department_id', 'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
         ->paginate(5);
 
         return view('employees-mgmt/index', ['employees' => $employees]);

@@ -148,7 +148,7 @@ class DivisionController extends Controller
 
             $index++;
         }
-        return $query->paginate(5);
+        return $query->paginate(10);
     }
     private function validateInput($request) {
         $this->validate($request, [

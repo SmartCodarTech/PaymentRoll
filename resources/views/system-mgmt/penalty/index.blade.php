@@ -1,4 +1,4 @@
-@extends('system-mgmt.state.base')
+@extends('system-mgmt.penalty.base')
 @section('action-content')
     <!-- Main content -->
     <section class="content">
@@ -6,10 +6,10 @@
   <div class="box-header">
     <div class="row">
         <div class="col-sm-8">
-          <h3 class="box-title">List of states</h3>
+          <h3 class="box-title">Penalties Management</h3>
         </div>
         <div class="col-sm-4">
-          <a class="btn btn-primary" href="{{ route('state.create') }}">Add new state</a>
+          <a class="btn btn-primary" href="{{ route('penalty.create') }}">Add new Penalties</a>
         </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6"></div>
       </div>
-      <form method="POST" action="{{ route('state.search') }}">
+      <form method="POST" action="{{ route('penalty.search') }}">
          {{ csrf_field() }}
          @component('layouts.search', ['title' => 'Search'])
           @component('layouts.two-cols-search-row', ['items' => ['Name'], 
@@ -39,15 +39,15 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($states as $state)
+            @foreach ($penalty as $penalty)
                 <tr role="row" class="odd">
-                  <td>{{ $state->name }}</td>
-                  <td>{{ $state->country_name }}</td>
+                  <td>{{ $penalty->name }}</td>
+                  <td>{{ $penalty->country_name }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('state.destroy', ['id' => $state->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('penalty.destroy', ['id' => $penalty->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('state.edit', ['id' => $state->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                        <a href="{{ route('penalty.edit', ['id' => $penalty->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                         Update
                         </a>
                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
@@ -70,11 +70,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($states)}} of {{count($states)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($penalty)}} of {{count($penalty)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $states->links() }}
+            {{ $penalty->links() }}
           </div>
         </div>
       </div>

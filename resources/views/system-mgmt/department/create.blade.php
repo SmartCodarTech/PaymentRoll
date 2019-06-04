@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }}">
-                            <label for="unit" class="col-md-4 control-label">Department Section</label>
+                            <label for="unit" class="col-md-4 control-label">Department Camp</label>
 
                             <div class="col-md-6">
                                 <input id="unit" type="text" class="form-control" name="unit" value="{{ old('unit') }}" placeholder="department unit" required autofocus>

@@ -63,6 +63,8 @@
             <tfoot>
               <tr>
                 <th width="20%" rowspan="1" colspan="1">Division Name</th>
+                <th width="20%" rowspan="1" colspan="1">Division Code</th>
+                <th width="20%" rowspan="1" colspan="1">Division Salary</th>
                 <th rowspan="1" colspan="2">Action</th>
               </tr>
             </tfoot>

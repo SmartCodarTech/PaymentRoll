@@ -11,7 +11,7 @@ class Premuim extends Model
      *
      * @var string
      */
-    protected $table = 'premium';
+    protected $table = 'premuim';
 
     /**
     * The attributes that aren't mass assignable.

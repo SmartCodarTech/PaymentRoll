@@ -1,4 +1,4 @@
-@extends('system-mgmt.state.base')
+@extends('system-mgmt.credit.base')
 @section('action-content')
     <!-- Main content -->
     <section class="content">
@@ -6,10 +6,10 @@
   <div class="box-header">
     <div class="row">
         <div class="col-sm-8">
-          <h3 class="box-title">List of states</h3>
+          <h3 class="box-title">List of Credits</h3>
         </div>
         <div class="col-sm-4">
-          <a class="btn btn-primary" href="{{ route('state.create') }}">Add new state</a>
+          <a class="btn btn-primary" href="{{ route('credit.create') }}">Add new Credit</a>
         </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6"></div>
       </div>
-      <form method="POST" action="{{ route('state.search') }}">
+      <form method="POST" action="{{ route('credit.search') }}">
          {{ csrf_field() }}
          @component('layouts.search', ['title' => 'Search'])
           @component('layouts.two-cols-search-row', ['items' => ['Name'], 
@@ -39,15 +39,15 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($states as $state)
+            @foreach ($credit as $credit)
                 <tr role="row" class="odd">
-                  <td>{{ $state->name }}</td>
-                  <td>{{ $state->country_name }}</td>
+                  <td>{{ $credit->name }}</td>
+                  <td>{{ $credit->country_name }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('state.destroy', ['id' => $state->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('credit.destroy', ['id' => $credit->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('state.edit', ['id' => $state->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                        <a href="{{ route('credit.edit', ['id' => $credit->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                         Update
                         </a>
                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
@@ -60,7 +60,7 @@
             </tbody>
             <tfoot>
               <tr>
-                <th width="20%" rowspan="1" colspan="1">State Name</th>
+                <th width="20%" rowspan="1" colspan="1">Credit Name</th>
                 <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Country Name</th>
                 <th rowspan="1" colspan="2">Action</th>
               </tr>
@@ -70,11 +70,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($states)}} of {{count($states)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($credit)}} of {{count($credit)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $states->links() }}
+            {{ $credit->links() }}
           </div>
         </div>
       </div>

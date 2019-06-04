@@ -21,6 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('type', 120);
             $table->string('gender');
             $table->date('date_hired');
+            $table->date('date_retired');
             $table->string('picture', 60);
             $table->bigInteger('department_id')->unsigned();
             $table->bigInteger('division_id')->unsigned();

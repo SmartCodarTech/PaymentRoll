@@ -1,4 +1,4 @@
-@extends('system-mgmt.state.base')
+@extends('system-mgmt.debit.base')
 @section('action-content')
     <!-- Main content -->
     <section class="content">
@@ -6,10 +6,10 @@
   <div class="box-header">
     <div class="row">
         <div class="col-sm-8">
-          <h3 class="box-title">List of states</h3>
+          <h3 class="box-title">List of Debits</h3>
         </div>
         <div class="col-sm-4">
-          <a class="btn btn-primary" href="{{ route('state.create') }}">Add new state</a>
+          <a class="btn btn-primary" href="{{ route('debit.create') }}">Add new debitors</a>
         </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6"></div>
       </div>
-      <form method="POST" action="{{ route('state.search') }}">
+      <form method="POST" action="{{ route('debit.search') }}">
          {{ csrf_field() }}
          @component('layouts.search', ['title' => 'Search'])
           @component('layouts.two-cols-search-row', ['items' => ['Name'], 
@@ -38,11 +38,11 @@
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
             </thead>
-            <tbody>
-            @foreach ($states as $state)
+            <tbody> 
+            @foreach ($debit as $debit)
                 <tr role="row" class="odd">
-                  <td>{{ $state->name }}</td>
-                  <td>{{ $state->country_name }}</td>
+                  <td>{{ $debit->name }}</td>
+                  <td>{{ $debit->country_name }}</td>
                   <td>
                     <form class="row" method="POST" action="{{ route('state.destroy', ['id' => $state->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
@@ -70,11 +70,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($states)}} of {{count($states)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($debit)}} of {{count($debit)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $states->links() }}
+            {{ $debit->links() }}
           </div>
         </div>
       </div>

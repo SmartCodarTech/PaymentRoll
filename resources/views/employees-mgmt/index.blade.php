@@ -29,7 +29,7 @@
       </form>
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-14">
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
@@ -42,7 +42,11 @@
                 <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="HiredDate: activate to sort column ascending">Hired Date</th>
                 <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Department: activate to sort column ascending">Department</th>
                 <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Division: activate to sort column ascending">Division</th>
+                <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Division: activate to sort column ascending">ID</th>
+                 <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Division: activate to sort column ascending">Salary(GHC)</th>
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
+               
+               
               </tr>
             </thead>
             <tbody>
@@ -57,6 +61,8 @@
                   <td class="hidden-xs">{{ $employee->date_hired }}</td>
                   <td class="hidden-xs">{{ $employee->department_name }}</td>
                   <td class="hidden-xs">{{ $employee->division_name }}</td>
+                  <td class="hidden-xs">{{ $employee->division_code }}</td>
+                  <td class="hidden-xs">{{ $employee->division_salary }}</td>
                   <td>
                     <form class="row" method="POST" action="{{ route('employee-management.destroy', ['id' => $employee->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">

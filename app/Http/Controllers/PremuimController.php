@@ -27,7 +27,7 @@ class PremuimController extends Controller
     {
         $premuim = Premuim::paginate(5);
 
-        return view('system-mgmt/premium/index', ['premuim' => $premuim]);
+        return view('system-mgmt/premium/index', ['premium' => $premuim]);
     }
 
     /**
@@ -133,7 +133,7 @@ class PremuimController extends Controller
             ];
 
        $countries = $this->doSearchingQuery($constraints);
-       return view('system-mgmt/premuim/index', ['countries' => $countries, 'searchingVals' => $constraints]);
+       return view('system-mgmt/premium/index', ['countries' => $countries, 'searchingVals' => $constraints]);
     }
 
     private function doSearchingQuery($constraints) {

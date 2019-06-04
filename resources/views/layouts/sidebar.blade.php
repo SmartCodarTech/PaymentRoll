@@ -43,9 +43,9 @@
             <li><a href="{{ url('system-management/department') }}"><i class="fa fa-building"></i>Department</a></li>
             <li><a href="{{ url('system-management/division') }}"><i class="fa fa-institution"></i>Division</a></li>
             <li><a href="{{ url('system-management/premium') }}"><i class="fa fa-money"></i>Premiums</a></li> <!--country-->
-            <li><a href="{{ url('system-management/state') }}"><i class="fa fa-minus"></i>Debits</a></li> <!--state-->
-            <li><a href="{{ url('system-management/city') }}"><i class="fa fa-plus"></i>Credit</a></li><!--city-->
-            <li><a href="{{ url('system-management/salary') }}"><i class="fa fa-gavel"></i>Penalties</a></li><!--pelnaties-->
+            <li><a href="{{ url('system-management/debit') }}"><i class="fa fa-minus"></i>Debits</a></li> <!--state-->
+            <li><a href="{{ url('system-management/credit') }}"><i class="fa fa-plus"></i>Credit</a></li><!--city-->
+            <li><a href="{{ url('system-management/penalty') }}"><i class="fa fa-gavel"></i>Penalties</a></li><!--pelnaties-->
             <li><a href="{{ url('system-management/report') }}"><i class="fa fa-file-pdf-o"></i>Report</a></li>
           </ul>
         </li>
