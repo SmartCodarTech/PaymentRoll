@@ -15,7 +15,7 @@ class CreatePremuimTable extends Migration
     {
             Schema::create('premuim', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('comment',60);
+            $table->string('premium_type',60);
             $table->decimal('amount',6,0);
             $table->string('premiun_purpose');
             $table->string('start_date');

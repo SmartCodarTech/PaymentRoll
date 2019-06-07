@@ -48,6 +48,7 @@
                                 @endif
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="col-md-4 control-label">Army Field</label>
                             <div class="col-md-6">

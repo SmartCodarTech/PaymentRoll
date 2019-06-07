@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\premuim;
+use App\Employee;
 
 class PremuimController extends Controller
 {
@@ -46,7 +47,10 @@ class PremuimController extends Controller
      */
     public function create()
     {
-        return view('system-mgmt/premium/create');
+        $employees = Employee::all();
+        return view('system-mgmt/premium/create', [
+         'employees' => $employees]);
+        
     }
 
     /**
