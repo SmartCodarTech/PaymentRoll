@@ -55,6 +55,7 @@ Route::post('system-management/report/excel', 'ReportController@exportExcel')->n
 Route::post('system-management/report/pdf', 'ReportController@exportPDF')->name('report.pdf');
 
 Route::get('avatars/{name}', 'EmployeeManagementController@load');
+Route::get('my-chart', 'ChartController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

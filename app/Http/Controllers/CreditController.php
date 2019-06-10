@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Credit;
-use App\Employees;
+use App\Employee;
 class CreditController extends Controller
 {
  /**
@@ -48,7 +48,9 @@ class CreditController extends Controller
      */
     public function create()
     {
-        return view('system-mgmt/credit/create');
+          $employees = Employee::all();
+        return view('system-mgmt/credit/create', [
+         'employees' => $employees]);
     }
 
     /**

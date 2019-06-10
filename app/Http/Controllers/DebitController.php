@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Debit;
-use App\Employees;
+use App\Employee;
 
 class DebitController extends Controller
 {
@@ -47,7 +47,9 @@ class DebitController extends Controller
      */
     public function create()
     {
-        return view('system-mgmt/debit/create');
+        $employees = Employee::all();
+        return view('system-mgmt/debit/create', [
+         'employees' => $employees]);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Employees;
+use App\Employee;
 use App\Penalty;
 use App\Division;
 class PenaltyController extends Controller
@@ -48,7 +48,9 @@ class PenaltyController extends Controller
      */
     public function create()
     {
-        return view('system-mgmt/penalty/create');
+         $employees = Employee::all();
+        return view('system-mgmt/penalty/create', [
+         'employees' => $employees]);
     }
 
     /**

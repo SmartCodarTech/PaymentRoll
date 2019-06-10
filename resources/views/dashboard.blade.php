@@ -31,7 +31,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
   <![endif]-->
+
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -176,33 +179,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
 
         <!-- /.col -->
-       
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+    
+
+      <row>
 
 
-                <!-- /.col >
+                <col >
                 <div class="col-md-12">
                   <p class="text-center">
-                    <strong>Goal Completion</strong>
+                    <strong>Millitary Officers</strong>
                   </p>
-
+                  
                   <div class="progress-group">
-                    <span class="progress-text">Add Products to Cart</span>
+                    <span class="progress-text">Total Number Army</span>
                     <span class="progress-number"><b>160</b>/200</span>
 
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
-                  <!-- /.progress-group ->
+                  <progress-group ->
                   <div class="progress-group">
-                    <span class="progress-text">Complete Purchase</span>
+                    <span class="progress-text">Total Number Navy</span>
                     <span class="progress-number"><b>310</b>/400</span>
 
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                    </div>
+                  </div>
+                   <progress-group ->
+                  <div class="progress-group">
+                    <span class="progress-text">Total Number Air Force</span>
+                    <span class="progress-number"><b></b></span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-aqua" style="width: %"></div>
                     </div>
                   </div>
                   <!-- /.progress-group ->
@@ -464,6 +475,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
      <!-- ./wrapper -->
 
  <!-- Footer -->
+
   @include('layouts.footer')
   
 <!-- ./wrapper -->
