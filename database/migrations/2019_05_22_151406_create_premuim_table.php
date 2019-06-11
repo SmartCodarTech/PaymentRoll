@@ -17,7 +17,7 @@ class CreatePremuimTable extends Migration
             $table->bigIncrements('id');
             $table->string('premium_type',60);
             $table->decimal('amount',6,0);
-            $table->string('premiun_purpose');
+            $table->string('premium_purpose');
             $table->string('start_date');
             $table->string('end_date');
             $table->bigInteger('employee_id')->unsigned();

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Response;
 use App\premuim;
 use App\Employee;
 
@@ -62,8 +63,12 @@ class PremuimController extends Controller
     {
         $this->validateInput($request);
          Premuim::create([
-            'name' => $request['name'],
-            'country_code' => $request['country_code']
+            'premium_type' => $request['premium_type'],
+            'amount' => $request['amount'],
+            'premium_purpose' => $request['premium_purpose'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'employee_id' => $request['employee_id']
         ]);
 
         return redirect()->intended('system-management/premium');
@@ -106,15 +111,23 @@ class PremuimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $country = Country::findOrFail($id);
+        $premuim = Premuim::findOrFail($id);
         $input = [
-            'name' => $request['name'],
-            'country_code' => $request['country_code']
+            'premium_type' => $request['premium_type'],
+            'amount' => $request['amount'],
+            'premium_purpose' => $request['premium_purpose'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'employee_id' => $request['employee_id']
         ];
         $this->validate($request, [
-        'name' => 'required|max:60'
+        'premium_type' => 'required|max:60',
+        'amount' => 'required|max:60',
+        'premium_purpose' => 'required|max:60',
+        'start_date' => 'required|max:60',
+        'end_date' => 'required|max:60'
         ]);
-        Country::where('id', $id)
+        Premuim::where('id', $id)
             ->update($input);
         
         return redirect()->intended('system-management/premium');
@@ -128,7 +141,7 @@ class PremuimController extends Controller
      */
     public function destroy($id)
     {
-        Country::where('id', $id)->delete();
+        Premuim::where('id', $id)->delete();
          return redirect()->intended('system-management/premium');
     }
 
@@ -140,16 +153,16 @@ class PremuimController extends Controller
      */
     public function search(Request $request) {
         $constraints = [
-            'name' => $request['name'],
-            'country_code' => $request['country_code']
+            'premium_type' => $request['premium_type'],
+            'amount' => $request['amount']
             ];
 
        $countries = $this->doSearchingQuery($constraints);
-       return view('system-mgmt/premium/index', ['countries' => $countries, 'searchingVals' => $constraints]);
+       return view('system-mgmt/premium/index', ['premuim' => $premuim, 'searchingVals' => $constraints]);
     }
 
     private function doSearchingQuery($constraints) {
-        $query = country::query();
+        $query = premuim::query();
         $fields = array_keys($constraints);
         $index = 0;
         foreach ($constraints as $constraint) {
@@ -163,8 +176,12 @@ class PremuimController extends Controller
     }
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:country',
-        'country_code' => 'required|max:3|unique:country'
+        'premium_type' => 'required|max:60|unique:premium_type',
+        'amount' => 'required|max:60|unique:amount',
+          'premium_purpose' => 'required|max:60|unique:premium_purpose',
+        'start_date' => 'required|max:60|unique:start_date',
+          'end_date' => 'required|max:60|unique:end_date'
+       
     ]);
     }
 }

@@ -2,14 +2,14 @@
 
 @section('action-content')
 <div class="container">
-    <div class="box-body">
+    
     <div class="row">
 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Add new Premium</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('premium.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('premuim.store') }}">
                     
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('employee_id') ? ' has-error' : '' }}">
@@ -94,13 +94,11 @@
                                 @endif
                             </div>
                         </div>
-                        </div>
+                        
+
                 
                         
-                       
-                        
-                        
-                        <div class="form-group">
+                   <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Create
@@ -113,12 +111,7 @@
         </div>
     </div>
 </div>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-}
-</script>
+  
 
 @endsection
 

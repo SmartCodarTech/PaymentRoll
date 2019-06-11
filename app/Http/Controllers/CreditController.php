@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Credit;
 use App\Employee;
+use App\Division;
 class CreditController extends Controller
 {
  /**
@@ -25,7 +26,7 @@ class CreditController extends Controller
      */
     public function index()
     {
-
+        
          $credit = DB::table('credit')
         ->leftJoin('employees', 'credit.employee_id', '=', 'employees.id')
         ->leftJoin('division', 'employees.division_id', '=', 'division.id')
@@ -33,12 +34,11 @@ class CreditController extends Controller
                             'employees.firstname as employees_firstname',
                             'employees.picture as employees_picture', 
             'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
-        
+      
        ->paginate(5);
+    
+       return view('system-mgmt/credit/index', ['credit' => $credit]);
 
-        $credit = Credit::paginate(5);
-
-        return view('system-mgmt/credit/index', ['credit' => $credit]);
     }
 
     /**
@@ -63,9 +63,12 @@ class CreditController extends Controller
     {
         $this->validateInput($request);
          Credit::create([
-            'name' => $request['name'],
-            'code' => $request['code'],
-            'salary' => $request['salary']
+            'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'credit_purpose' => $request['credit_purpose'],
+            'employee_id' => $request['employee_id']
         ]);
 
         return redirect()->intended('system-management/credit');
@@ -111,9 +114,12 @@ class CreditController extends Controller
         $credit= Credit::findOrFail($id);
         $this->validateInput($request);
         $input = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+             'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'credit_purpose' => $request['credit_purpose'],
+            'employee_id' => $request['employee_id']
         ];
         Credit::where('id', $id)
             ->update($input);
@@ -141,9 +147,12 @@ class CreditController extends Controller
      */
     public function search(Request $request) {
         $constraints = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+             'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'credit_purpose' => $request['credit_purpose'],
+            'employee_id' => $request['employee_id']
             ];
 
        $divisions = $this->doSearchingQuery($constraints);
@@ -165,9 +174,14 @@ class CreditController extends Controller
     }
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:credit',
-        'code' => 'required|max:60|unique:credit',
-        'salary' => 'required|max:60|unique:credit'
+            'comment' => 'required|max:60',
+            'amount' => 'required|max:60',
+            'start_date' => 'required|max:60',
+            'end_date' => 'required',
+            'credit_purpose'=>'required',
+            'employee_id' => 'required'
+           
+        
     ]);
     }
 }
