@@ -70,8 +70,12 @@ class CreditController extends Controller
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
             'credit_purpose' => $request['credit_purpose'],
-            'employee_id' => $request['employee_id']
+            'employee_id'=>$request['employee_id'],
+            
         ]);
+
+         
+         
 
         return redirect()->intended('system-management/credit');
     }

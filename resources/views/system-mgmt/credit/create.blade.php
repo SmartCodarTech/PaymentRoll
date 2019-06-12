@@ -15,7 +15,7 @@
                         <div class="form-group {{ $errors->has('employee_id') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Full Name</label>
                             <div class="col-md-6">
-                                <select class="form-control select2" name="employee_id"  style="width: 100%;">
+                                <select class="form-control select2"  multiple="multiple" data-placeholder="Select a Employee's name"name="employee_id[]"  style="width: 100%;">
                                    
                                     @foreach ($employees as $employees)
 

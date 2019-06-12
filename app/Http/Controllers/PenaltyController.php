@@ -32,8 +32,7 @@ class PenaltyController extends Controller
         ->leftJoin('division', 'employees.division_id', '=', 'division.id')
         ->select('penalty.*', 'employees.lastname as employees_lastname',
                             'employees.firstname as employees_firstname',
-                            'employees.picture as employees_picture', 
-            'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
+                            'employees.picture','division.salary as division_salary','division.id as division_id')
         
        ->paginate(5);
     
