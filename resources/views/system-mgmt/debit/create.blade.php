@@ -2,7 +2,7 @@
 
 @section('action-content')
 <div class="container">
-    <div class="box-body">
+    
     <div class="row">
 
         <div class="col-md-8 col-md-offset-2">
@@ -30,24 +30,24 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('credit_type') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
                             <label for="credit_type" class="col-md-4 control-label">Debit Type</label>
 
                             <div class="col-md-6">
-                                <input id="premium_type" type="text" class="form-control" name="premium_type" value="{{ old('premium_type') }}" placeholder="Premium Type" required autofocus>
+                                <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}" placeholder="Debit Type" required autofocus>
 
-                                @if ($errors->has('premium_type'))
+                                @if ($errors->has('debit_type'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('premium_type') }}</strong>
+                                        <strong>{{ $errors->first('debit_type') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Premium Amount</label>
+                            <label for="amount" class="col-md-4 control-label">Debit Amount</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Premium Amount"required>
+                                <input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Premium Amount"required>
 
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
@@ -59,7 +59,7 @@
                         
                 
                           <div class="form-group">
-                            <label class="col-md-4 control-label">Premium Starting Date</label>
+                            <label class="col-md-4 control-label">Debit Starting Date</label>
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                             <div class="form-group">
-                            <label class="col-md-4 control-label">Premium Ending Date</label>
+                            <label class="col-md-4 control-label">Debit Ending Date</label>
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -80,21 +80,21 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="form-group{{ $errors->has('premium_purpose') ? ' has-error' : '' }}">
-                            <label for="premium_purpose" class="col-md-4 control-label">Premium Purpose</label>
+                            <div class="form-group{{ $errors->has('credit_purpose') ? ' has-error' : '' }}">
+                            <label for="credit_purpose" class="col-md-4 control-label">Debit Purpose</label>
 
                             <div class="col-md-6">
-                                 <textarea class="textarea" input id="premium_purpose" name="premium_purpose" value="{{ old('premium_purpose') }}"placeholder="Enter text" ></textarea>
+                                 <textarea class="textarea" input id="debit_purpose" name="debit_purpose" value="{{ old('debit_purpose') }}"placeholder="Enter text" ></textarea>
                                 
 
-                                @if ($errors->has('premium_purpose'))
+                                @if ($errors->has('debit_purpose'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('premium_purpose') }}</strong>
+                                        <strong>{{ $errors->first('debit_purpose') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        </div>
+                    
                 
                         
                        

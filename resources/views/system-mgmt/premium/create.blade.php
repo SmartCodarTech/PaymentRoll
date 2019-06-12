@@ -9,7 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add new Premium</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('premuim.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('premium.store') }}">
                     
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('employee_id') ? ' has-error' : '' }}">

@@ -15,7 +15,7 @@ class CreateDebitTable extends Migration
     {
             Schema::create('debit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('comment',60);
+            $table->string('debit_type',60);
             $table->decimal('amount',6,0);
             $table->string('debit_purpose');
             $table->string('start_date');

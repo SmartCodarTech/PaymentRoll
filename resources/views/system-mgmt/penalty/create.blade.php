@@ -2,7 +2,7 @@
 
 @section('action-content')
 <div class="container">
-    <div class="box-body">
+  
     <div class="row">
 
         <div class="col-md-8 col-md-offset-2">
@@ -30,28 +30,28 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('credit_type') ? ' has-error' : '' }}">
-                            <label for="credit_type" class="col-md-4 control-label">Credit Type</label>
+                        <div class="form-group{{ $errors->has('penalty_type') ? ' has-error' : '' }}">
+                            <label for="credit_type" class="col-md-4 control-label">Penalty Type</label>
 
                             <div class="col-md-6">
-                                <input id="premium_type" type="text" class="form-control" name="premium_type" value="{{ old('premium_type') }}" placeholder="Premium Type" required autofocus>
+                                <input id="penalty_type" type="text" class="form-control" name="penalty_type" value="{{ old('type_type') }}" placeholder="Penalty Type" required autofocus>
 
-                                @if ($errors->has('premium_type'))
+                                @if ($errors->has('penalty_type'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('premium_type') }}</strong>
+                                        <strong>{{ $errors->first('penalty_type') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Premium Amount</label>
+                        <div class="form-group{{ $errors->has('amount_division') ? ' has-error' : '' }}">
+                            <label for="amount" class="col-md-4 control-label">Penalty Amount</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Premium Amount"required>
+                                <input id="amount_division" type="number" class="form-control" name="amount_division" value="{{ old('amount_division') }}" placeholder="Salary Division number"required>
 
-                                @if ($errors->has('amount'))
+                                @if ($errors->has('amount_division'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
+                                        <strong>{{ $errors->first('amount_division') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -59,7 +59,7 @@
                         
                 
                           <div class="form-group">
-                            <label class="col-md-4 control-label">Premium Starting Date</label>
+                            <label class="col-md-4 control-label">Penalty Starting Date</label>
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                             <div class="form-group">
-                            <label class="col-md-4 control-label">Premium Ending Date</label>
+                            <label class="col-md-4 control-label">Penalty Ending Date</label>
                             <div class="col-md-6">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -80,25 +80,20 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="form-group{{ $errors->has('premium_purpose') ? ' has-error' : '' }}">
-                            <label for="premium_purpose" class="col-md-4 control-label">Premium Purpose</label>
+                            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+                            <label for="comment" class="col-md-4 control-label">Comment</label>
 
                             <div class="col-md-6">
-                                 <textarea class="textarea" input id="premium_purpose" name="premium_purpose" value="{{ old('premium_purpose') }}"placeholder="Enter text" ></textarea>
+                                 <textarea class="textarea" input id="comment" name="comment" value="{{ old('comment') }}"placeholder="Enter text" ></textarea>
                                 
 
-                                @if ($errors->has('premium_purpose'))
+                                @if ($errors->has('comment'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('premium_purpose') }}</strong>
+                                        <strong>{{ $errors->first('comment') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        </div>
-                
-                        
-                       
-                        
                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

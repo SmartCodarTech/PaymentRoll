@@ -27,7 +27,7 @@ class PenaltyController extends Controller
      */
     public function index()
     {
-        $penalty = DB::table('penalty')
+        $penaltys = DB::table('penalty')
         ->leftJoin('employees', 'penalty.employee_id', '=', 'employees.id')
         ->leftJoin('division', 'employees.division_id', '=', 'division.id')
         ->select('penalty.*', 'employees.lastname as employees_lastname',
@@ -36,9 +36,8 @@ class PenaltyController extends Controller
             'division.name as division_name','division.code as division_code', 'division.salary as division_salary','division.id as division_id')
         
        ->paginate(5);
-        $penalty = Penalty::paginate(5);
-
-        return view('system-mgmt/penalty/index', ['penalty' => $penalty]);
+    
+        return view('system-mgmt/penalty/index', ['penaltys' => $penaltys]);
     }
 
     /**
@@ -63,9 +62,13 @@ class PenaltyController extends Controller
     {
         $this->validateInput($request);
          Penalty::create([
-            'name' => $request['name'],
-            'code' => $request['code'],
-            'salary' => $request['salary']
+
+            'penalty_type' => $request['penalty_type'],
+            'amount_division' => $request['amount_division'],
+            'comment' => $request['comment'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'employee_id' => $request['employee_id']
         ]);
 
         return redirect()->intended('system-management/penalty');
@@ -111,9 +114,13 @@ class PenaltyController extends Controller
         $penalty= Penalty::findOrFail($id);
         $this->validateInput($request);
         $input = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+            'penalty_type' => $request['penalty_type'],
+            'amount_division' => $request['amount_division'],
+            'comment' => $request['comment'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'employee_id' => $request['employee_id']
+            
         ];
         Penalty::where('id', $id)
             ->update($input);
@@ -141,9 +148,12 @@ class PenaltyController extends Controller
      */
     public function search(Request $request) {
         $constraints = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+            'penalty_type' => $request['penalty_type'],
+            'amount_division' => $request['amount_division'],
+            'comment' => $request['comment'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'employee_id' => $request['employee_id']
             ];
 
        $divisions = $this->doSearchingQuery($constraints);
@@ -165,9 +175,12 @@ class PenaltyController extends Controller
     }
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:penalty',
-        'code' => 'required|max:60|unique:penalty',
-        'salary' => 'required|max:60|unique:penalty'
+            'penalty_type' => 'required|max:60',
+            'amount_division' => 'required|max:60',
+            'comment' => 'required|max:60',
+            'start_date' => 'required|max:60',
+            'end_date' => 'required',
+            'employee_id' => 'required'
     ]);
     }
 }

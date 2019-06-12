@@ -139,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{DB::table('premuim')->count()}}</h3>
+              <h3>{{DB::table('premium')->count()}}</h3>
 
               <p>Premiums</p>
             </div>

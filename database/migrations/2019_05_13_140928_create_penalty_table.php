@@ -13,10 +13,13 @@ class CreatePenaltyTable extends Migration
      */
     public function up()
     {
-        Schema::create('penalty', function (Blueprint $table) {
+        Schema::table('penalty', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('amount',6,0);
+            $table->string('penalty_type');
+            $table->integer('amount_division',6,0);
             $table->string('comment');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->bigInteger('employee_id')->unsigned();
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->softDeletes();

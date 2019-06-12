@@ -45,12 +45,12 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($penalty as $penalty)
+            @foreach ($penaltys as $penalty)
                 <tr role="row" class="odd">
-                  <td><img src="../{{$employee->picture }}" width="50px" height="50px"/></td>
-                  <td class="sorting_1">{{ $employee->firstname }}  {{$employee->lastname}}</td>
-                  <td class="hidden-xs">{{ $employee->division_salary }}</td>
-                  <td class="hidden-xs">{{ $employee->division_name }}</td>
+                  <td><img src="../{{$penalty->employees_picture }}" width="50px" height="50px"/></td>
+                  <td class="sorting_1">{{ $penalty->employees_firstname }}  {{$penalty->employees_lastname}}</td>
+                  <td class="hidden-xs">{{ $employees->division_salary }}</td>
+                  <td class="hidden-xs">{{ $employees->division_name }}</td>
                   <td>{{ $penalty->comment }}</td>
                   <td>{{ $penalty->amount }}</td>
                   <td>{{ $penalty->start_date }}</td>
@@ -92,11 +92,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($penalty)}} of {{count($penalty)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($penaltys)}} of {{count($penaltys)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $penalty->links() }}
+            {{ $penaltys->links() }}
           </div>
         </div>
       </div>

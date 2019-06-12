@@ -37,7 +37,7 @@ class DebitController extends Controller
         
        ->paginate(5);
 
-       return view('system-mgmt/debit/index', ['debit' => $debits]);
+       return view('system-mgmt/debit/index', ['debits' => $debits]);
     }
 
     /**
@@ -62,9 +62,13 @@ class DebitController extends Controller
     {
         $this->validateInput($request);
          Debit::create([
-            'name' => $request['name'],
-            'code' => $request['code'],
-            'salary' => $request['salary']
+
+            'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'debit_purpose' => $request['debit_purpose'],
+            'employee_id' => $request['employee_id']
         ]);
 
         return redirect()->intended('system-management/debit');
@@ -110,11 +114,14 @@ class DebitController extends Controller
         $debit= Debit::findOrFail($id);
         $this->validateInput($request);
         $input = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+            'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'debit_purpose' => $request['debit_purpose'],
+            'employee_id' => $request['employee_id']
         ];
-        Credit::where('id', $id)
+        Debit::where('id', $id)
             ->update($input);
         
         return redirect()->intended('system-management/debit');
@@ -138,11 +145,15 @@ class DebitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      *  @return \Illuminate\Http\Response
      */
+    
     public function search(Request $request) {
         $constraints = [
-            'name' => $request['name'],
-            'code' => $request['code'],
-             'salary' => $request['salary']
+            'comment' => $request['comment'],
+            'amount' => $request['amount'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
+            'debit_purpose' => $request['debit_purpose'],
+            'employee_id' => $request['employee_id']
             ];
 
        $divisions = $this->doSearchingQuery($constraints);
@@ -162,11 +173,16 @@ class DebitController extends Controller
         }
         return $query->paginate(10);
     }
+
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:credit',
-        'code' => 'required|max:60|unique:credit',
-        'salary' => 'required|max:60|unique:credit'
+            'comment' => 'required|max:60',
+            'amount' => 'required|max:60',
+            'start_date' => 'required|max:60',
+            'end_date' => 'required|max:60',
+            'debit_purpose'=>'required|max:60',
+            'employee_id' => 'required|max:60',
+
     ]);
     }
 }

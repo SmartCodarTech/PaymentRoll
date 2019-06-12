@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePremuimTable extends Migration
+class CreatePremiumTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePremuimTable extends Migration
      */
     public function up()
     {
-            Schema::create('premuim', function (Blueprint $table) {
+        Schema::create('premium', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('premium_type',60);
             $table->decimal('amount',6,0);
@@ -24,7 +24,6 @@ class CreatePremuimTable extends Migration
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
             $table->softDeletes();
-            
         });
     }
 
@@ -35,6 +34,6 @@ class CreatePremuimTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('premuim');
+        Schema::dropIfExists('premium');
     }
 }
