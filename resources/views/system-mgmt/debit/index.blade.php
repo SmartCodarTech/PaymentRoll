@@ -40,6 +40,9 @@
                 <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Amount (GHC)</th>
                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Start Date</th>
                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">End Date</th>
+                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Status</th>
+               
+              
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
             </thead>
@@ -54,10 +57,13 @@
                   <td>{{ $debit->end_date }}</td>
 
                   <td>
+                    <button type="button" class="btn btn-block btn-success">Active</button>
+                  </td>
+                  <td>
                     <form class="row" method="POST" action="{{ route('debit.destroy', ['id' => $debit->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('debit.edit', ['id' => $debit->id]) }}" class="btn btn-success col-sm-3 col-xs-5 btn-margin">
+                        <a href="{{ route('debit.edit', ['id' => $debit->id]) }}" class="btn btn-info col-sm-3 col-xs-5 btn-margin">
                         Update
                         </a>
                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
@@ -65,6 +71,7 @@
                         </button>
                     </form>
                   </td>
+                   
               </tr>
             @endforeach
             </tbody>
@@ -77,6 +84,8 @@
                 <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Amount (GHC)</th>
                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">Start Date</th>
                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending">End Date</th>
+                  <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="country: activate to sort column ascending"> Status</th>
+                 
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
                 <th rowspan="1" colspan="2">Action</th>

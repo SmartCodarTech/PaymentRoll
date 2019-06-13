@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Premium extends Model
 {
-    protected $table = ' premium';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'premium';
 
+    /**
+    * The attributes that aren't mass assignable.
+    *
+    * @var array
+    */
     protected $guarded = [];
 }

@@ -150,8 +150,8 @@ class DepartmentController extends Controller
     }
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:department',
-        'unit' => 'required|max:60|unique:department'
+        'name' => 'required|max:60',
+        'unit' => 'required|max:60'
     ]);
     }
     public function DepartmentCount()

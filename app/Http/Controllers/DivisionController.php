@@ -154,7 +154,7 @@ class DivisionController extends Controller
         $this->validate($request, [
         'name' => 'required|max:60|unique:division',
         'code' => 'required|max:60|unique:division',
-        'salary' => 'required|max:60|unique:division'
+        'salary' => 'required|max:60'
     ]);
     }
 }

@@ -27,8 +27,17 @@ Route::resource('user-management', 'UserManagementController');
 Route::resource('employee-management', 'EmployeeManagementController');
 Route::post('employee-management/search', 'EmployeeManagementController@search')->name('employee-management.search');
 
+Route::resource('junior-management', 'JuniorEmployeesController');
+Route::post('junior-management/search', 'JuniorEmployeesController@search')->name('junior-management.search');
+
+Route::resource('senior-management', 'SeniorEmployeesController');
+Route::post('senior-management/search', 'SeniorEmployeesController@search')->name('senior-management.search');
+
 Route::resource('system-management/department', 'DepartmentController');
 Route::post('system-management/department/search', 'DepartmentController@search')->name('department.search');
+
+Route::resource('system-management/bank', 'BankController');
+Route::post('system-management/bank/search', 'BankController@search')->name('bank.search');
 
 Route::resource('system-management/division', 'DivisionController');
 Route::post('system-management/division/search', 'DivisionController@search')->name('division.search');
