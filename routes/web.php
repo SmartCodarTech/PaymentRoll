@@ -21,12 +21,16 @@ Route::get('/dashboard', 'DashboardController@index');
 // Route::get('/system-management/{option}', 'SystemMgmtController@index');
 Route::get('/profile', 'ProfileController@index');
 
+
+
 Route::post('user-management/search', 'UserManagementController@search')->name('user-management.search');
 Route::resource('user-management', 'UserManagementController');
 
 Route::resource('employee-management', 'EmployeeManagementController');
 Route::post('employee-management/search', 'EmployeeManagementController@search')->name('employee-management.search');
 
+Route::post('mail-management/search', 'SendEmailController@search')->name('mail-management.search');
+Route::resource('mail-management', 'SendEmailController');
 
 
 Route::resource('civilian-management', 'CivilianEmployeesController');

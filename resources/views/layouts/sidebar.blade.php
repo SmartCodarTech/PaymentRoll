@@ -52,6 +52,7 @@
             <li><a href="{{ url('system-management/report') }}"><i class="fa fa-file-pdf-o"></i>Report</a></li>
           </ul>
         </li>
+        <li><a href="{{ route('mail-management.index')}}"><i class="fa fa-envelope"></i> <span>Mails</span></a></li>
         <li><a href="{{ route('user-management.index') }}"><i class="fa fa-cogs"></i> <span>User management</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

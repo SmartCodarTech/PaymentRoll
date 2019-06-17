@@ -273,7 +273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ChartJS 1.0.1 -->
 
 <!-- FastClick -->
- <script src="{{ asset ("bower_components/AdminLTE/plugins/fastclick/fastclick.js") }}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/plugins/fastclick/fastclick.js")}}" type="text/javascript"></script>
 <!-- AdminLTE App -->
  <script src="{{ asset ("bower_components/AdminLTE/dist/js/app.min.js")}}" type="text/javascript"></script>
 <!-- AdminLTE for demo purposes -->
