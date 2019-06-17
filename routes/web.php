@@ -27,11 +27,10 @@ Route::resource('user-management', 'UserManagementController');
 Route::resource('employee-management', 'EmployeeManagementController');
 Route::post('employee-management/search', 'EmployeeManagementController@search')->name('employee-management.search');
 
-Route::resource('junior-management', 'JuniorEmployeesController');
-Route::post('junior-management/search', 'JuniorEmployeesController@search')->name('junior-management.search');
 
-Route::resource('senior-management', 'SeniorEmployeesController');
-Route::post('senior-management/search', 'SeniorEmployeesController@search')->name('senior-management.search');
+
+Route::resource('civilian-management', 'CivilianEmployeesController');
+Route::post('civilian-management-management/search', 'CivilianEmployeesController@search')->name('civilian-management.search');
 
 Route::resource('system-management/department', 'DepartmentController');
 Route::post('system-management/department/search', 'DepartmentController@search')->name('department.search');
@@ -64,6 +63,7 @@ Route::post('system-management/report/excel', 'ReportController@exportExcel')->n
 Route::post('system-management/report/pdf', 'ReportController@exportPDF')->name('report.pdf');
 
 Route::get('avatars/{name}', 'EmployeeManagementController@load');
+Route::get('avatars/{name}', 'CivilianEmployeesController@load');
 Route::get('my-chart', 'ChartController@index');
 Auth::routes();
 

@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Bank;
 
 class BankController extends Controller
 {
+ /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,9 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        $banks = Bank::paginate(5);
+
+        return view('system-mgmt/bank/index', ['banks' => $banks]);
     }
 
     /**
@@ -23,7 +37,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('system-mgmt/bank/create');
     }
 
     /**
@@ -34,7 +48,14 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateInput($request);
+         Bank::create([
+            'name' => $request['name'],
+            'branch' => $request['branch'],
+            'code' => $request['code']
+        ]);
+
+        return redirect()->intended('system-management/bank');
     }
 
     /**
@@ -56,7 +77,13 @@ class BankController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bank = Bank::find($id);
+        // Redirect to division list if updating division wasn't existed
+        if ($bank == null || count($bank) == 0) {
+            return redirect()->intended('/system-management/bank');
+        }
+
+        return view('system-mgmt/bank/edit', ['bank' => $bank]);
     }
 
     /**
@@ -68,7 +95,17 @@ class BankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bank = Bank::findOrFail($id);
+        $this->validateInput($request);
+        $input = [
+            'name' => $request['name'],
+            'branch' => $request['branch'],
+             'code' => $request['code']
+        ];
+        Bank::where('id', $id)
+            ->update($input);
+        
+        return redirect()->intended('system-management/bank');
     }
 
     /**
@@ -79,6 +116,45 @@ class BankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bank::where('id', $id)->delete();
+         return redirect()->intended('system-management/bank');
+    }
+
+    /**
+     * Search division from database base on some specific constraints
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *  @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        $constraints = [
+            'name' => $request['name'],
+            'branch' => $request['branch'],
+             'code' => $request['code']
+            ];
+
+       $divisions = $this->doSearchingQuery($constraints);
+       return view('system-mgmt/bank/index', ['banks' => $banks, 'searchingVals' => $constraints]);
+    }
+
+    private function doSearchingQuery($constraints) {
+        $query = Bank::query();
+        $fields = array_keys($constraints);
+        $index = 0;
+        foreach ($constraints as $constraint) {
+            if ($constraint != null) {
+                $query = $query->where( $fields[$index], 'like', '%'.$constraint.'%');
+            }
+
+            $index++;
+        }
+        return $query->paginate(10);
+    }
+    private function validateInput($request) {
+        $this->validate($request, [
+        'name' => 'required|max:60',
+        'branch' => 'required|max:60',
+        'code' => 'required|max:60|unique:bank'
+    ]);
     }
 }

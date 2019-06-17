@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSenioremployeesTable extends Migration
+class CreateSalarystructureTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSenioremployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('senioremployees', function (Blueprint $table) {
+        Schema::create('salarystructure', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateSenioremployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('senioremployees');
+        Schema::dropIfExists('salarystructure');
     }
 }

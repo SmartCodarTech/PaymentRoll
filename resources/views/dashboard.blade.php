@@ -11,20 +11,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link href="{{ asset("/bower_components/AdminLTE/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset("bower_components/AdminLTE/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-   <link href="{{ asset("/bower_components/AdminLTE/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset("bower_components/AdminLTE/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset("bower_components/AdminLTE/plugins/morris/morris.css")}}" rel="stylesheet" type="text/css" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
-   <link href="{{ asset("/bower_components/AdminLTE/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
-   <link href="{{ asset("/bower_components/AdminLTE/dist/css/skins/_all-skins.min.css")}}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset("bower_components/AdminLTE/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset("bower_components/AdminLTE/dist/css/skins/_all-skins.min.css")}}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset("bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.cs")}}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset("bower_components/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css")}}" rel="stylesheet" type="text/css" />
+
   
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -122,6 +126,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ url('employee-management') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+
+
+           <div class="col-lg-3 col-xs-6">
+             <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{DB::table('civilian')->count()}}</h3>
+
+              <p>Civilian Employees</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <a href="{{ url('civilian-management') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
@@ -140,14 +160,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{DB::table('premium')->count()}}</h3>
+              <h3>{{DB::table('bank')->count()}}</h3>
 
-              <p>Premiums</p>
+              <p>Banks</p>
             </div>
             <div class="icon">
-              <i class="fa fa-gift"></i>
+              <i class="fa fa-bank"></i>
             </div>
-            <a href="{{ url('system-management/premium') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('system-management/bank') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -164,25 +184,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ url('system-management/credit') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{DB::table('debit')->count()}}</h3>
-
-              <p>Debits</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-            <a href="{{ url('system-management/debit') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+        
 
         <!-- /.col -->
     
 
       <row>
+        
 
           <div class="col-md-6">
           <div class="box box-success">
@@ -227,7 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </div>
                    </div>
-                      </div>
+                  
 
                 <!-- /.col -->
               </div>
@@ -248,29 +256,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED JS SCRIPTS -->
 
  <!-- jQuery 2.1.3 -->
-<script src="{{ asset ("/bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js") }}"></script>
+<script src="{{ asset ("bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js") }}"></script>
 
 <!-- Bootstrap 3.3.2 JS -->
-<script src="{{ asset ("/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("bower_components/AdminLTE/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
 
 <!-- AdminLTE App -->
-<script src="{{ asset ("/bower_components/AdminLTE/dist/js/app.min.js")}}" type="text/javascript"></script>
-<script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.js")}}" type="text/javascript"></script>
-<script src="{{ asset ("/bower_components/chart.js/Chart.js")}}" type="text/javascript"></script>
-<script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.min.js")}}" type="text/javascript"></script>
- <script src="{{ asset ("/bower_components/AdminLTE/plugins/chartjs/Chart.js")}}" type="text/javascript"></script>
+<script src="{{ asset ("bower_components/AdminLTE/dist/js/app.min.js")}}" type="text/javascript"></script>
+
+
+<script src="{{ asset ("bower_components/AdminLTE/plugins/chartjs/Chart.min.js")}}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/plugins/chartjs/Chart.js")}}" type="text/javascript"></script>
 
 <!-- Bootstrap 3.3.6 -->
 
 <!-- ChartJS 1.0.1 -->
 
 <!-- FastClick -->
- <script src="{{ asset ("/bower_components/AdminLTE/plugins/fastclick/fastclick.js") }}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/plugins/fastclick/fastclick.js") }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
- <script src="{{ asset ("/bower_components/AdminLTE/dist/js/app.min.js")}}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/dist/js/app.min.js")}}" type="text/javascript"></script>
 <!-- AdminLTE for demo purposes -->
- <script src="{{ asset ("/bower_components/AdminLTE/dist/js/demo.js")}}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/dist/js/demo.js")}}" type="text/javascript"></script>
+ <script src="{{ asset ("bower_components/AdminLTE/dist/js/pages/dashboard.js")}}" type="text/javascript"></script>
+  <script src="{{ asset ("bower_components/AdminLTE/dist/js/pages/dashboard2.js")}}" type="text/javascript"></script>
 <!-- page script -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 
 <!--script src="{{ asset ("/bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js") }}"type="text/javascript"></script>
 <!-- Bootstrap 3.3.6 -->

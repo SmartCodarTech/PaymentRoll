@@ -15,7 +15,11 @@ class CreateBankTable extends Migration
     {
         Schema::create('bank', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('branch');
+            $table->string('code');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
