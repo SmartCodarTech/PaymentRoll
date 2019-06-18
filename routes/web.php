@@ -42,6 +42,15 @@ Route::post('system-management/department/search', 'DepartmentController@search'
 Route::resource('system-management/bank', 'BankController');
 Route::post('system-management/bank/search', 'BankController@search')->name('bank.search');
 
+Route::resource('system-management/tax', 'TaxController');
+Route::post('system-management/tax/search', 'TaxController@search')->name('tax.search');
+
+Route::resource('system-management/payroll', 'PayrollController');
+Route::post('system-management/payroll/search', 'PayrollController@search')->name('payroll.search');
+
+Route::resource('system-management/allowance', 'AllowanceController');
+Route::post('system-management/allowance/search', 'AllowanceController@search')->name('allowance.search');
+
 Route::resource('system-management/division', 'DivisionController');
 Route::post('system-management/division/search', 'DivisionController@search')->name('division.search');
 

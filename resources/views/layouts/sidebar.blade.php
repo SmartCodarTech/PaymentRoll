@@ -33,7 +33,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li><a href="{{ url('employee-management') }}"><i class="fa fa-fighter-jet"></i> <span>Officers Management</span></a></li>
-         <li><a href="{{ url('civilian-management') }}"><i class="fa fa-user"></i> <span>Civilian Employees</span></a></li>
+        
          
         <li class="treeview">
           <a href="#"><i class="fa fa-money"></i> <span>Payroll Management</span>
@@ -50,6 +50,20 @@
             <li><a href="{{ url('system-management/credit') }}"><i class="fa fa-plus"></i>Credit</a></li><!--city-->
             <li><a href="{{ url('system-management/penalty') }}"><i class="fa fa-gavel"></i>Penalties</a></li><!--pelnaties-->
             <li><a href="{{ url('system-management/report') }}"><i class="fa fa-file-pdf-o"></i>Report</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="{{ url('civilian-management') }}"><i class="fa fa-users"></i> <span>Civilians Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('civilian-management') }}"><i class="fa fa-users"></i> Civilians Record</a></li>
+            <li><a href="{{ url('system-management/allowance') }}"><i class="fa fa-money"></i>Allowances</a></li>
+            <li><a href="{{ url('system-management/payroll') }}"><i class="fa fa-cc-visa"></i>Payroll</a></li>
+            <li><a href="{{ url('system-management/tax') }}"><i class="fa fa-bank"></i>Tax</a></li> <!--country-->
+           
           </ul>
         </li>
         <li><a href="{{ route('mail-management.index')}}"><i class="fa fa-envelope"></i> <span>Mails</span></a></li>
