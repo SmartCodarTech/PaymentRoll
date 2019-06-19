@@ -62,7 +62,8 @@
             <li><a href="{{ url('civilian-management') }}"><i class="fa fa-users"></i> Civilians Record</a></li>
             <li><a href="{{ url('system-management/allowance') }}"><i class="fa fa-money"></i>Allowances</a></li>
             <li><a href="{{ url('system-management/payroll') }}"><i class="fa fa-cc-visa"></i>Payroll</a></li>
-            <li><a href="{{ url('system-management/tax') }}"><i class="fa fa-bank"></i>Tax</a></li> <!--country-->
+            <li><a href="{{ url('system-management/tax') }}"><i class="fa fa-bank"></i>Tax</a></li>
+            <li><a href="{{ url('system-management/deduction') }}"><i class="fa fa-calculator"></i>Deductions</a></li> <!--country-->
            
           </ul>
         </li>

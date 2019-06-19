@@ -30,6 +30,7 @@ Route::resource('employee-management', 'EmployeeManagementController');
 Route::post('employee-management/search', 'EmployeeManagementController@search')->name('employee-management.search');
 
 Route::post('mail-management/search', 'SendEmailController@search')->name('mail-management.search');
+Route::get('mail-management','SendMailController@sendMail');
 Route::resource('mail-management', 'SendEmailController');
 
 
@@ -54,8 +55,8 @@ Route::post('system-management/allowance/search', 'AllowanceController@search')-
 Route::resource('system-management/division', 'DivisionController');
 Route::post('system-management/division/search', 'DivisionController@search')->name('division.search');
 
-Route::resource('system-management/premium', 'PremiumController');
-Route::post('system-management/premium/search', 'PremiumController@search')->name('premium.search');
+Route::resource('system-management/deduction', 'DeductionsController');
+Route::post('system-management/deduction/search', 'DeductionsController@search')->name('deduction.search');
 
 Route::resource('system-management/salary', 'EmployeeSalaryController');
 Route::post('system-management/salary/search', 'EmployeeSalaryController@search')->name('salary.search');

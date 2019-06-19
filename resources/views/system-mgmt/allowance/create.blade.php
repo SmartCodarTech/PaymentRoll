@@ -12,19 +12,18 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('allowance.store') }}">
                     
                         {{ csrf_field() }}
-                        <div class="form-group {{ $errors->has('civilian_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Full Name</label>
+                        <div class="form-group {{ $errors->has('staff_type') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Staff Type</label>
                             <div class="col-md-6">
-                                <select class="form-control select2"  multiple="multiple" data-placeholder="Select a Employee's name" name="civilian_id"  style="width: 100%;">
-                                   
-                                    @foreach ($civilians as $civilian)
-
-                                        <option value="{{$civilian->id}}">{{$civilian->firstname}} {{$civilian->lastname}}</option>
-                                    @endforeach
+                                <select class="form-control "   data-placeholder="Select Position" name="staff_type">
+                                   <option value="none">Select</option>
+                                   <option value="Senior">Senior</option>
+                                   <option value="Junior">Junior</option>
+                            
                                 </select>
-                                 @if ($errors->has('civilian_id'))
+                                 @if ($errors->has('staff_type'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('civilian_id') }}</strong>
+                                        <strong>{{ $errors->first('staff_type') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -47,7 +46,7 @@
                             <label for="amount" class="col-md-4 control-label">Allowance Amount</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Allowance Amount"required>
+                                <input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Allowance Amount"required>
 
                                 @if ($errors->has('amount'))
                                     <span class="help-block">

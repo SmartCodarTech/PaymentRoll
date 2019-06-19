@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tax extends Model
+class Deductions extends Model
 {
-    protected $table='tax';
+     protected $table='deduct';
 
 
      protected $fillable = [
-        'tax_type', 'pecentage','organization','tax_date'
+        'name', 'branch','code',
     ];
     
       protected $guarded = [];

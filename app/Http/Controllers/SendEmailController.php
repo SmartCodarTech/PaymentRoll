@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Mail;
+use App\Mail\SendMail;
 use App\Employee;
 use PDF;
 
@@ -41,7 +44,23 @@ class SendEmailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validateInput($request,
+         [
+            'email' => 'required|email',
+            'subject' => 'required',
+            'body' => 'required'
+        ]);
+
+        $data = array (
+            'subject' => $request->subject,
+            'body' => $request->body
+        );
+
+        mail::to('eliknana45@gmail.com')->send(New SendMail ($data));
+        return back()->('success','Thanks For contacting us!');
+
+        
     }
 
     /**
@@ -89,17 +108,18 @@ class SendEmailController extends Controller
         //
     }
     public function sendmail(Request $request){
+         $employees = Employee::all();
 
         $data["email"]=$request->get("email");
-        $data["client_name"]=$request->get("client_name");
         $data["subject"]=$request->get("subject");
+        $data["body"]=$request->get("body");
 
         $pdf = PDF::loadView('mails.mail', $data);
 
         try{
             Mail::send('mails.mail', $data, function($message)use($data,$pdf) {
-            $message->to($data["email"], $data["client_name"])
-            ->subject($data["subject"])
+            $message->to($data["email"], $data["subject"])
+            ->subject($data["body"])
             ->attachData($pdf->output(), "payroll.pdf");
             });
         }catch(JWTException $exception){
@@ -116,5 +136,6 @@ class SendEmailController extends Controller
            $this->statuscode  =   "1";
         }
         return response()->json(compact('this'));
+         return view('mail-mgmt/sendmail', ['employees' => $employees]);
  }
 }

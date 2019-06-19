@@ -97,11 +97,11 @@
                   <tr>
                     <td><input type="checkbox"></td>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    <td class="mailbox-name"><a href="read-mail.html">{{ $data['email'] }}</a></td>
+                    <td class="mailbox-subject"><b>{{ $data['subject'] }}</b> {{ $data['body'] }}
                     </td>
                     <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
+                    <td class="mailbox-date">$ldate = date('Y-m-d H:i:s');</td>
                   </tr>
                   </tbody>
                 </table>

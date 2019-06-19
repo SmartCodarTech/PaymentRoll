@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Response;
+use App\Tax;
 
 class TaxController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +26,9 @@ class TaxController extends Controller
      */
     public function index()
     {
-        //
+         $taxes = Tax::paginate(5);
+
+        return view('system-mgmt/tax/index', ['taxes' => $taxes]);
     }
 
     /**
@@ -23,7 +38,7 @@ class TaxController extends Controller
      */
     public function create()
     {
-        //
+        return view('system-mgmt/tax/create');
     }
 
     /**
@@ -34,7 +49,15 @@ class TaxController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validateInput($request);
+         Tax::create([
+            'tax_type' => $request['tax_type'],
+            'pecentage' => $request['pecentage'],
+            'organization' => $request['organization'],
+            'tax_date' => $request['tax_date']
+        ]);
+
+        return redirect()->intended('system-management/tax');
     }
 
     /**
@@ -56,7 +79,13 @@ class TaxController extends Controller
      */
     public function edit($id)
     {
-        //
+        $taxes = Tax::find($id);
+        // Redirect to division list if updating division wasn't existed
+        if ($taxes == null || count($tax_date) == 0) {
+            return redirect()->intended('/system-management/tax');
+        }
+
+        return view('system-mgmt/tax/edit', ['taxes' => $taxes]);
     }
 
     /**
@@ -68,7 +97,45 @@ class TaxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $taxes = Tax::findOrFail($id);
+        $this->validateInput($request);
+        $input = [
+            'tax_type' => $request['tax_type'],
+            'pecentage' => $request['pecentage'],
+            'organization' => $request['organization'],
+            'tax_date' => $request['tax_date']
+        ];
+        Tax::where('id', $id)
+            ->update($input);
+        
+        return redirect()->intended('system-management/tax');
+    }
+
+
+     public function search(Request $request) {
+        $constraints = [
+            'tax_type' => $request['tax_type'],
+            'pecentage' => $request['pecentage'],
+            'organization' => $request['organization'],
+            'tax_date' => $request['tax_date']
+            ];
+
+       $taxes = $this->doSearchingQuery($constraints);
+       return view('system-mgmt/tax/index', ['taxes' => $taxes, 'searchingVals' => $constraints]);
+    }
+
+    private function doSearchingQuery($constraints) {
+        $query = Tax::query();
+        $fields = array_keys($constraints);
+        $index = 0;
+        foreach ($constraints as $constraint) {
+            if ($constraint != null) {
+                $query = $query->where( $fields[$index], 'like', '%'.$constraint.'%');
+            }
+
+            $index++;
+        }
+        return $query->paginate(10);
     }
 
     /**
@@ -79,6 +146,15 @@ class TaxController extends Controller
      */
     public function destroy($id)
     {
-        //
+          Tax::where('id', $id)->delete();
+         return redirect()->intended('system-management/tax');
+    }
+    private function validateInput($request) {
+        $this->validate($request, [
+        'tax_type' => 'required|max:60|unique:tax',
+        'pecentage' => 'required',
+        'organization' => 'required',
+        'tax_date' => 'required'
+    ]);
     }
 }

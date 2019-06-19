@@ -20,14 +20,14 @@ class Payroll extends Model
 	
 	public function grossPay(){
 		$calc = 0;
-		if($this->civilian->full_time && !$this->over_time){
-			return $this->gross = $this->employee->role->salary;
+		if($this->civilian->salary && !$this->over_time){
+			return $this->gross = $this->civilian->salary;
 		}
-		if($this->civilian->full_time && $this->over_time){
+		if($this->civilian->salary && $this->over_time){
 			$calc = $this->hours * $this->rate;
-			return $this->gross = $calc + $this->employee->role->salary;
+			return $this->gross = $calc + $this->civilian->salary;
 		}
-		if($this->over_time || !$this->full_time){
+		if($this->over_time || !$this->){
 			$calc = $this->hours * $this->rate;
 			return $this->gross = $calc;
 		}

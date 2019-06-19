@@ -5,49 +5,61 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add new Bank</div>
+                <div class="panel-heading">Add new Tax</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('bank.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('tax.store') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Bank Name</label>
+                        <div class="form-group{{ $errors->has('tax_type') ? ' has-error' : '' }}">
+                            <label for="tax_type" class="col-md-4 control-label">Tax Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Bank Name" value="{{ old('name') }}" required autofocus>
+                                <input id="tax_type" type="text" class="form-control" name="tax_type" placeholder="Tax Name" value="{{ old('tax_type') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('tax_type'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('tax_type') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                            <label for="branch" class="col-md-4 control-label">Branch</label>
+                        <div class="form-group{{ $errors->has('pecentage') ? ' has-error' : '' }}">
+                            <label for="percentage" class="col-md-4 control-label">Percentage of Salary</label>
 
                             <div class="col-md-6">
-                                <input id="branch" type="text" class="form-control" name="branch" placeholder="Branch" value="{{ old('branch') }}" required autofocus>
+                                <input id="pecentage" type="number" class="form-control" name="pecentage" placeholder="Pecentage" value="{{ old('pecentage') }}" required autofocus>
 
-                                @if ($errors->has('branch'))
+                                @if ($errors->has('pecentage'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('branch') }}</strong>
+                                        <strong>{{ $errors->first('pecentage') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                         <div class="form-group{{ $errors->has('organization') ? ' has-error' : '' }}">
+                            <label for="percentage" class="col-md-4 control-label">Tax Institution</label>
+
+                            <div class="col-md-6">
+                                <input id="organization" type="text" class="form-control" name="organization" placeholder="organization" value="{{ old('organization') }}" required autofocus>
+
+                                @if ($errors->has('organization'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('organization') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                            <label for="code" class="col-md-4 control-label">Bank Code</label>
-
+                        
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Date</label>
                             <div class="col-md-6">
-                                <input id="code" type="text" class="form-control" placeholder="Bank Code" name="code" value="{{ old('code') }}" required autofocus>
-
-                                @if ($errors->has('code'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('code') }}</strong>
-                                    </span>
-                                @endif
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" value="{{ old('tax_date') }}" name="tax_date" class="form-control pull-right" id="hiredDate" placeholder=" Date" required>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

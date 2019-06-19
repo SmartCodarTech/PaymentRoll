@@ -28,17 +28,9 @@ class AllowanceController extends Controller
      */
     public function index()
     {
-        
-         $allowances= DB::table('allowance')
-        ->leftJoin('civilian', 'allowance.civilian_id', '=', 'civilian.id')
-        ->select('allowance.*', 'civilian.lastname as civilian_lastname',
-                            'civilian.firstname as civilian_firstname',
-                            'civilian.picture as civilian_picture')
-      
-       ->paginate(5);
-        //return view('system-mgmt/credit/index',  ['credit'=>Credit::paginate(5)];
-       return view('system-mgmt/allowance/index', ['allowances' => $allowances]);
-        //return view('employee.index', ['employees'=>Employee::paginate(5)]);
+          $bonuses = Allowance::paginate(5);
+
+        return view('system-mgmt/allowance/index', ['bonuses' => $bonuses]);
 
     }
 
@@ -49,8 +41,8 @@ class AllowanceController extends Controller
      */
     public function create()
     {
-          $civilians = Civilian::all();
-        return view('system-mgmt/allowance/create', ['civilians' => $civilians]);
+         
+        return view('system-mgmt/allowance/create');
     }
 
     /**
@@ -67,7 +59,7 @@ class AllowanceController extends Controller
             'allowance_type' => $request['allowance_type'],
             'amount' => $request['amount'],
             'allowance_date' => $request['allowance_date'],
-            'civilian_id'=>$request['civilian_id'],
+            'staff_type'=>$request['staff_type']
             
         ]);
 
@@ -94,15 +86,13 @@ class AllowanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+  public function edit($id)
     {
-        $allowances = Alowance::find($id);
+        $bonuses = Allowance::find($id);
         // Redirect to division list if updating division wasn't existed
-        if ($credit == null || count($credit) == 0) {
-            return redirect()->intended('/system-management/allowance');
-        }
-
-        return view('system-mgmt/allowance/edit', ['allowances' => $allowances]);
+       
+         //return view('system-mgmt/allowance/edit', ['bonuses'=>Allowance::find($id)]);
+        return view('system-mgmt/allowance/edit', ['bonuses' => $bonuses]);
     }
 
     /**
@@ -114,20 +104,42 @@ class AllowanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $allowances= Alowance::findOrFail($id);
+
+         $bonuses=Allowance::findOrFail($id);
+        $this->validate($request,[
+            'staff_type' => 'required',
+            'allowance_type' => 'required',
+            'amount' => 'required',
+            'allowance_date' => 'required',
+            
+        ]);
+                
+        $bonuses->allowance_type = $request->allowance_type;
+        $bonuses->amount = $request->amount;
+        
+        $bonuses->allowance_date = $request->allowance_date; 
+        $bonuses->staff_type = $request->staff_type;     
+        $bonuses->save();
+        
+        $request->session()->flash('status', 'Allowance created');
+         return redirect()->intended('system-management/allowance');
+        //return redirect()->route('employees.index');
+    }
+
+
+       /** $bonuses = Allowance::findOrFail($id);
         $this->validateInput($request);
         $input = [
-             'allowance_type' => $request['allowance_type'],
+            'allowance_type' => $request['allowance_type'],
             'amount' => $request['amount'],
             'allowance_date' => $request['allowance_date'],
-           
-            'civilian_id' => $request['civilian_id']
+            'staff_type'=>$request['staff_type']
         ];
         Allowance::where('id', $id)
             ->update($input);
         
         return redirect()->intended('system-management/allowance');
-    }
+    }**/
 
     /**
      * Remove the specified resource from storage.
@@ -137,7 +149,7 @@ class AllowanceController extends Controller
      */
     public function destroy($id)
     {
-        Alowance::where('id', $id)->delete();
+        Allowance::where('id', $id)->delete();
          return redirect()->intended('system-management/allowance');
     }
 
@@ -148,40 +160,38 @@ class AllowanceController extends Controller
      *  @return \Illuminate\Http\Response
      */
     public function search(Request $request) {
-         $constraints = [
-            'employees.firstname' => $request['employees_firstname'],
-            'employees.lastname' => $request['employees_lastname'],
-            'employees.picture' => $request['employees_picture']
-            ];
-        $credits = $this->doSearchingQuery($constraints);
-        $constraints['employees_firstname'] = $request['employees_lastname'];
-        return view('system-mgmt/credit/index', ['credit' => $credit, 'searchingVals' => $constraints]);
+        $constraints = [
+            'allowance_type' => $request['allowance_type'],
+            'amount' => $request['amount'],
+            'allowance_date' => $request['allowance_date'],
+            'staff_type'=>$request['staff_type']
+                    ];
+
+       $divisions = $this->doSearchingQuery($constraints);
+       return view('system-mgmt/allowance/index', ['bonuses' => $bonuses, 'searchingVals' => $constraints]);
     }
 
     private function doSearchingQuery($constraints) {
-       $query = DB::table('credit')
-          ->leftJoin('employees', 'credit.employee_id', '=', 'employees.id')
-           ->leftJoin('division', 'employees.division_id', '=', 'division.id')
-         ->select('credit.*','employees.firstname as employees_firstname', 'employees.lastname as employees_lastname','employees.picture as employees_picture', 
-                    'division.salary as division_salary','division.id as division_id');
+        $query = Allowance::query();
         $fields = array_keys($constraints);
         $index = 0;
         foreach ($constraints as $constraint) {
             if ($constraint != null) {
-                $query = $query->where($fields[$index], 'like', '%'.$constraint.'%');
+                $query = $query->where( $fields[$index], 'like', '%'.$constraint.'%');
             }
 
             $index++;
         }
-        return $query->paginate(5);
+        return $query->paginate(10);
     }
+
     private function validateInput($request) {
         $this->validate($request, [
             'allowance_type' => 'required|max:60',
             'amount' => 'required|max:60',
             'allowance_date' => 'required|max:60',
          
-            'civilian_id' => 'required'
+            'staff_type' => 'required'
            
         
     ]);

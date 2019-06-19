@@ -54,7 +54,14 @@
             </div>
            
             <div class="box-body">
-                
+              @if ($body= Session::get('success'))
+             <div class="alert alert-success alert-block">
+             <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>{{ $body }}</strong>
+                </div>
+               @endif
+               <form class="sendemail-form" role="form" method="POST" action="{{ route('mail-management.store') }}">
+                 {{ csrf_field() }}
               <div class="form-group">
 
                   <select class="form-control select2"  multiple="multiple" data-placeholder="To" name="email"  style="width: 100%;">
@@ -63,11 +70,12 @@
                                     @endforeach
                 </select>
               </div>
+
               <div class="form-group">
                 <input class="form-control" name="subject" placeholder="Subject:">
               </div>
               <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
+                    <textarea id="compose-textarea" name="body" class="form-control" style="height: 300px">
                       
                     </textarea>
               </div>
@@ -79,16 +87,21 @@
                 <p class="help-block">Max. 32MB</p>
               </div>
             </div>
+
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
                 <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                <button type="submit" class="btn btn-primary"><i name="submit" class="fa fa-envelope-o" ></i> Send</button>
               </div>
               <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
             </div>
+
             <!-- /.box-footer -->
+         
+
           </div>
+            </form>
           <!-- /. box -->
         </div>
         <!-- /.col -->

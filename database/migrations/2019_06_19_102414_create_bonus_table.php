@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaxTable extends Migration
+class CreateBonusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTaxTable extends Migration
      */
     public function up()
     {
-        Schema::create('tax', function (Blueprint $table) {
+        Schema::create('bonus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tax_type');
+            $table->string('allowance_type');
             $table->decimal('amount',6,0);
-            $table->string('tax_date');
-            $table->bigInteger('civilian_id')->unsigned();
-            $table->foreign('civilian_id')->references('id')->on('civilian');
+            $table->string('allowance_date');
+            $table->string('staff_type');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ class CreateTaxTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tax');
+        Schema::dropIfExists('bonus');
     }
 }

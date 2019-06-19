@@ -7,9 +7,10 @@
 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Credit Account</div>
+                <div class="panel-heading">Civilian Payroll</div>
+                
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('credit.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('payroll.store',['id'=>$civilian->id]') }}">
                     
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('employee_id') ? ' has-error' : '' }}">
@@ -31,69 +32,67 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('credit_type') ? ' has-error' : '' }}">
-                            <label for="credit_type" class="col-md-4 control-label">Credit Type</label>
+                            <label for="over_time" class="col-md-4 control-label">Over Time</label>
 
                             <div class="col-md-6">
-                                <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}" placeholder="Credit Type" required autofocus>
-
-                                @if ($errors->has('comment'))
+                                <select class="form-control"   data-placeholder="Select" name="over_time" ">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                   
+                                </select>
+                                @if ($errors->has('over_time'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('comment') }}</strong>
+                                        <strong>{{ $errors->first('over_time') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Credit Amount</label>
+
+                        <div class="form-group{{ $errors->has('hours') ? ' has-error' : '' }}">
+                            <label for="hours" class="col-md-4 control-label">Hours</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" placeholder=" Premium Amount"required>
+                                <input id="hours" type="number" class="form-control" name="hours" value="{{ old('hours') }}" placeholder=" Hours"required>
 
-                                @if ($errors->has('amount'))
+                                @if ($errors->has('hours'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
+                                        <strong>{{ $errors->first('hours') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('rate') ? ' has-error' : '' }}">
+                            <label for="rate" class="col-md-4 control-label">Rate</label>
+
+                            <div class="col-md-6">
+                                <input id="rate" type="number" class="form-control" name="rate" value="{{ old('rate') }}" placeholder=" rate"required>
+
+                                @if ($errors->has('rate'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('rate') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('hours') ? ' has-error' : '' }}">
+                            <label for="hours" class="col-md-4 control-label">Hours</label>
+
+                            <div class="col-md-6">
+                                <input id="hours" type="number" class="form-control" name="hours" value="{{ old('hours') }}" placeholder=" Hours"required>
+
+                                @if ($errors->has('hours'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('hours') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         
                 
-                          <div class="form-group">
-                            <label class="col-md-4 control-label">Credit Starting Date</label>
-                            <div class="col-md-6">
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" value="{{ old('start_date') }}" name="start_date" class="form-control pull-right" id="hiredDate" placeholder="Starting Date" required>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="form-group">
-                            <label class="col-md-4 control-label">Credit Ending Date</label>
-                            <div class="col-md-6">
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" value="{{ old('end_date') }}" name="end_date" class="form-control pull-right" id="endDate" placeholder="End date" required>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="form-group{{ $errors->has('credit_purpose') ? ' has-error' : '' }}">
-                            <label for="credit_purpose" class="col-md-4 control-label">Credit Purpose</label>
-
-                            <div class="col-md-6">
-                                 <textarea class="textarea" input id="credit_purpose" name="credit_purpose" value="{{ old('credit_purpose') }}"placeholder="Enter text" ></textarea>
-                                
-
-                                @if ($errors->has('credit_purpose'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('credit_purpose') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                           
                     
                 
                         
